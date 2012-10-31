@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
+  <title><![CDATA[アドテクの人じゃないけどアドに興味ある人の四方山話]]></title>
   <link href="http://rindai87.github.com/atom.xml" rel="self"/>
   <link href="http://rindai87.github.com/"/>
-  <updated>2012-11-01T01:11:31+09:00</updated>
+  <updated>2012-11-01T01:20:33+09:00</updated>
   <id>http://rindai87.github.com/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[Norihiro Shimoda]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[test テスト]]></title>
+    <link href="http://rindai87.github.com/blog/2012/11/01/test/"/>
+    <updated>2012-11-01T01:17:00+09:00</updated>
+    <id>http://rindai87.github.com/blog/2012/11/01/test</id>
+    <content type="html"><![CDATA[<p>this is a test post.</p>
+]]></content>
+  </entry>
   
 </feed>
