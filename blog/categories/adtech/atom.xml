@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[アドテクの人じゃないけどアドに興味ある人の四方山話]]></title>
-  <link href="http://rindai87.github.com/atom.xml" rel="self"/>
+  <title><![CDATA[Category: adtech | アドテクの人じゃないけどアドに興味ある人の四方山話]]></title>
+  <link href="http://rindai87.github.com/blog/categories/adtech/atom.xml" rel="self"/>
   <link href="http://rindai87.github.com/"/>
   <updated>2012-11-06T00:52:43+09:00</updated>
   <id>http://rindai87.github.com/</id>
@@ -18,7 +18,7 @@
     <link href="http://rindai87.github.com/blog/2012/11/06/went-to-ad-tech-tokyo/"/>
     <updated>2012-11-06T00:21:00+09:00</updated>
     <id>http://rindai87.github.com/blog/2012/11/06/went-to-ad-tech-tokyo</id>
-    <content type="html"><![CDATA[<p><img src="http://www.facebook.com/photo.php?fbid=528187310542744&set=pb.100000544408846.-2207520000.1352130200&type=3&theater"></p>
+    <content type="html"><![CDATA[<p><img src="http://www.facebook.com/photo.php?fbid=528187310542744&amp;set=pb.100000544408846.-2207520000.1352130200&amp;type=3&amp;theater"></p>
 
 <h2>ad:tech tokyo</h2>
 
