@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[アドテクの人じゃないけどアドに興味ある人の四方山話]]></title>
+  <title><![CDATA[アドテクの人じゃないけど興味ある人の四方山話]]></title>
   <link href="http://rindai87.github.com/atom.xml" rel="self"/>
   <link href="http://rindai87.github.com/"/>
-  <updated>2012-11-06T00:52:43+09:00</updated>
+  <updated>2012-11-06T00:54:11+09:00</updated>
   <id>http://rindai87.github.com/</id>
   <author>
     <name><![CDATA[Norihiro Shimoda]]></name>
@@ -18,9 +18,7 @@
     <link href="http://rindai87.github.com/blog/2012/11/06/went-to-ad-tech-tokyo/"/>
     <updated>2012-11-06T00:21:00+09:00</updated>
     <id>http://rindai87.github.com/blog/2012/11/06/went-to-ad-tech-tokyo</id>
-    <content type="html"><![CDATA[<p><img src="http://www.facebook.com/photo.php?fbid=528187310542744&set=pb.100000544408846.-2207520000.1352130200&type=3&theater"></p>
-
-<h2>ad:tech tokyo</h2>
+    <content type="html"><![CDATA[<h2>ad:tech tokyo</h2>
 
 <p>少し前の話になりますが、<a href="http://www.adtech-tokyo.com/ja/" title="ad:tech tokyo">ad:tech tokyo</a>に行って来ました。去年はそいういうイベントがあるらしいくらいの認識でしたが、今年は最新のアドテクの話を聞きたい、と参加させてもらいました。（諸般の事情によりビジターパスでの参加でしたが・・・）人間、興味は変われば変わるもんですね。</p>
 
