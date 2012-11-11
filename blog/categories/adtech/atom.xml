@@ -4,7 +4,7 @@
   <title><![CDATA[Category: adtech | adtech周辺に興味がある人の四方山話]]></title>
   <link href="http://rindai87.github.com/blog/categories/adtech/atom.xml" rel="self"/>
   <link href="http://rindai87.github.com/"/>
-  <updated>2012-11-06T01:45:44+09:00</updated>
+  <updated>2012-11-11T15:03:25+09:00</updated>
   <id>http://rindai87.github.com/</id>
   <author>
     <name><![CDATA[Norihiro Shimoda]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[the future of the cookieという記事を読んだ]]></title>
+    <link href="http://rindai87.github.com/blog/2012/11/11/the-future-of-the-cookie/"/>
+    <updated>2012-11-11T15:00:00+09:00</updated>
+    <id>http://rindai87.github.com/blog/2012/11/11/the-future-of-the-cookie</id>
+    <content type="html"><![CDATA[<p><a href="http://www.iab.net/iablog/2012/10/the-future-of-the-cookie.html">the future of the cookie</a>という興味深いタイトルの記事がFacebookで流れてきて、個人的に気になったので概要のメモ</p>
+
+<h2>概要</h2>
+
+<p>Cookieを利用したオーディエンスデータの活用が主流だけど、その流れがこのまま加速していくと皆が疲弊する状態になるよね。なので、なんとかするワーキンググループ作ってやっていきましょう、という内容だった。
+ここで、一番重要そうなのが、<a href="http://www.iab.net/">IAB</a>が音頭をとっているということでしょう。IABはInteractive Advertising Bureauの頭文字をとった団体で、インターネットの広告の業界団体です。加盟団体の顔ぶれや、<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20100628/349664/">こういうガイドライン</a>なんかも出してる団体で、非常に影響力は強いと思われます。</p>
+
+<h2>記事のメモ</h2>
+
+<h3>Cookie利用偏重の抱える問題</h3>
+
+<p>Cookieが当初想定されていた以上の使い方をされていて、Webのインフラのようになっていて様々なところで利用されている。
+一方で、安定性や信頼性という点で色々と問題が出てきた。例えば、cookieはuserと同義語ではないが実際はユーザーと同義語として扱われている。こうした問題点を抱えつつも、利用の幅がどんどんと広がっており、今後もその逆の流れにはならないだろう。しかし、これは、広告主にも、媒体も消費者もプラットフォーマーも全てのプレイヤーに旨みのない状況になりつつある。</p>
+
+<h3>パブリッシャーの問題</h3>
+
+<p>パブリッシャーの問題は、3rdパーティー製のピクセルロード処理の蔓延である。
+ページのロードが遅くなりユーザー体験を阻害したり、集計が食い違いが発生したり、またデータ漏えいのリスクがある。
+また、収益モデルも不安定となる。3rdパーティーのピクセルロードを導入するかどうか、ユーザーがcookieをブロックしているかどうかで収益が大きく変動する。また、DNT問題や、法律の問題など、潜在的なリスクが大きい。</p>
+
+<h3>広告出側（広告主、配信者）の問題</h3>
+
+<p>広告出稿側の問題は、余分なユーザートラッキングによるネットワークへの過大な負荷や冗長なユーザートラッキングの仕組みの展開、過度な広告露出などがある。またクッキーをサポートしていないモバイルデバイスの登場への対応などもある。</p>
+
+<h3>消費者の問題</h3>
+
+<p>消費者の問題は、3rdパーティーcookieの増加のための過負荷によるユーザー体験の悪化がある。またオプトイン、オプトアウトが断片化しており、デバイス間で統合がはかれていないなどが挙げられる。</p>
+
+<p>で、cookie依存の仕組みを変えて行きましょうというワーキンググループが登場しているようです。IABが絡んでいるので、個人レベルで気軽にどうこうというよりは、各社のステークスホルダーで足並みを揃えていきましょうという割としっかりとした会みたいですね。日本で参加してる企業はあるのかなと気になるところ。</p>
+
+<h3>所感</h3>
+
+<p>色々やりたいことは分かるけど、正直Cookieのやりとりでなんとかするのはきついだろうとぼんやりと考えていたので、まさにドンピシャな動きだなという感じです。今後の動きにも注目していきたいところです。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ad:tech tokyoに行って来た話]]></title>
