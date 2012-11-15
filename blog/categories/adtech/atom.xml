@@ -4,7 +4,7 @@
   <title><![CDATA[Category: adtech | adtech周辺に興味がある人の四方山話]]></title>
   <link href="http://rindai87.github.com/blog/categories/adtech/atom.xml" rel="self"/>
   <link href="http://rindai87.github.com/"/>
-  <updated>2012-11-16T02:15:50+09:00</updated>
+  <updated>2012-11-16T02:16:34+09:00</updated>
   <id>http://rindai87.github.com/</id>
   <author>
     <name><![CDATA[Norihiro Shimoda]]></name>
@@ -19,8 +19,6 @@
     <updated>2012-11-16T02:01:00+09:00</updated>
     <id>http://rindai87.github.com/blog/2012/11/16/how-to-sync-cookie</id>
     <content type="html"><![CDATA[<p>DMPがどのようにCookieデータを収集しているかについて、ある程度知識が固まってきたのでまとめようと思います。まずはDMPのデータ収集の肝であるCookieSyncについて数回に分けて書いていこうと思います。</p>
-
-<h1>はじめに</h1>
 
 <h2>DMPの役割とは</h2>
 
