@@ -4,7 +4,7 @@
   <title><![CDATA[Category: adtech | adtech周辺に興味がある人の四方山話]]></title>
   <link href="http://rindai87.github.com/blog/categories/adtech/atom.xml" rel="self"/>
   <link href="http://rindai87.github.com/"/>
-  <updated>2012-11-11T20:14:59+09:00</updated>
+  <updated>2012-11-16T02:15:50+09:00</updated>
   <id>http://rindai87.github.com/</id>
   <author>
     <name><![CDATA[Norihiro Shimoda]]></name>
@@ -12,6 +12,88 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[DMPはどのようにCookieデータを収集しているか（CookieSync編）]]></title>
+    <link href="http://rindai87.github.com/blog/2012/11/16/how-to-sync-cookie/"/>
+    <updated>2012-11-16T02:01:00+09:00</updated>
+    <id>http://rindai87.github.com/blog/2012/11/16/how-to-sync-cookie</id>
+    <content type="html"><![CDATA[<p>DMPがどのようにCookieデータを収集しているかについて、ある程度知識が固まってきたのでまとめようと思います。まずはDMPのデータ収集の肝であるCookieSyncについて数回に分けて書いていこうと思います。</p>
+
+<h1>はじめに</h1>
+
+<h2>DMPの役割とは</h2>
+
+<p><a href="http://rindai87.github.com/blog/2012/11/11/about-dmp/">こちら</a>にも書いた通り、DMP自体にはデータを解析するだけでなく様々な役割があります。データの分析/解析だけでなく、データを収集するところにも関わっているということを念頭に置くと理解が深まります。</p>
+
+<h2>DMPが集めるデータと収集方法</h2>
+
+<p>DMPはブラウザのCookie情報を収集し整理し、利用しやすい形で提供しています。収集にはCookieSyncという技術が用いられています。</p>
+
+<h2>CookieSync概要</h2>
+
+<p>このあとCookieSyncの実例をあげますが、まずは基本的なCookieSyncの流れの説明をします。CookieSyncは外部のサーバーに対して1pixelの画像のロードを行うことで実現します。</p>
+
+<ol>
+<li>Webサイトにタグを埋め込みます。</li>
+<li>Webサイトを訪れたユーザーには、WebサイトのCookieが発行されます。</li>
+<li>Webサイトに埋め込まれたタグによって画像をロードしようと外部のサーバーにリクエストを送ります。</li>
+<li>そのリクエストは、WebサイトにおけるCookie IDをクエリストリングに付与されています</li>
+<li>外部サーバーはクエリストリングの情報によってWebサイトにおけるあるユーザーのCookie IDを知ることができます。</li>
+<li>またそのリクエストに対して、外部サーバーにおけるCookieを発行します。</li>
+<li>これによって、2つの異なるシステムにおけるCookie IDを交換することができました。</li>
+</ol>
+
+
+<p>これは実例があった方が理解が深まりますので、まずは<a href="">こちら</a>で紹介されているSSP-DSP間のCookieSyncについて見て行きましょう。</p>
+
+<h2>SSPとDSP間のCookieSync</h2>
+
+<p><a href="http://www.adopsinsider.com/ad-exchanges/ssp-to-dsp-cookie-synching-explained/">こちら</a>に書かれているものをまとめたものになります。ユースケースとして、DSPの出稿主であるあるショッピングサイトが、自社のショッピングサイトで商品をカートに入れるまで進んだユーザーに対してターゲティングを行いたい、という状況です。</p>
+
+<h3>登場人物</h3>
+
+<ul>
+<li>ショッピングサイト：storeABC, DSPを利用している</li>
+<li>webサイト：awesomesite.com, SSPを利用している</li>
+<li>ユーザー：user123</li>
+<li>DSP：DSP456</li>
+<li>SSP：SSP123</li>
+</ul>
+
+
+<h3>ケーススタディ</h3>
+
+<p>文字だけではわかりにくいので簡単な図も書いてみました。
+<img src="/images/ssp-to-dsp.png"></p>
+
+<ol>
+<li>user123がstoreABCを訪れる。150$の靴をカートに入れるも離脱</li>
+<li>user123はカートのページにはDSP456へ1pixelの画像を取得してにいくタグを仕込んでいた。なので、user123はDSP456のCookieID=DSPcookie789が発行されている。</li>
+<li>user123はネットサーフィンを行なっていて、awesomesite.comにたどり着く。awesomesite.comはSSPを利用している</li>
+<li>awesomesite.comでも、SSPへのリダイレクトを行わせるのでuser123には、SSP123のCookieID=SSPcookiexyzが発行されている。</li>
+<li>今user123は、DSPとSSPの双方のCookie情報を保有している</li>
+</ol>
+
+
+<p>ここまでで、user123にはSSPとDSPのCookie情報が保存されていることになります。これをどう交換するのか、が次のポイントです。ここでもう一度目的のおさらい、「DSPはいかにしてSSPからのbidリクエストから自分たちの保有しているCookie情報にマッチするユーザーを探すのか」です。
+結論から言うと、初めてのbidでは不可能です。SSPだけがユーザーの情報(とSSPで管理するためのCookie情報)を持っています。CookieSyncは競売が終了した後に発生します。</p>
+
+<ol>
+<li>SSP123が競売に勝利するDSPを選択した後、SSP123はuser123をDSPに(DSP456を含む)にユーザーをリダイレクトさせます。クエリストリングにSSP123のCookieID=SSPcookieXYZを付与したリダイレクトです。</li>
+<li>なんとここでSSPcookieXYZをクエリストリングに持ってやってきたuser123がDSP456のcookieID=DSPcookie789を持っているではないですか</li>
+<li>こうして、SSPCookieXYZ=DSPCookie789は同一ユーザーのものと分かり、DSPはその情報をDBに保存しておきます。</li>
+<li>すると次にSSPCookieXYXのbidリクエストがきた時には、user123からのリクエストだということが分かるようになります。</li>
+</ol>
+
+
+<p>CookieSyncのポイントはオークション終了後に実施することで、UXの低下を防ぐという工夫を行なっています。CookieSyncの実例としてPubmetricなどの主要なSSPが行なっている<a href="http://ads.pubmatic.com/AdServer/js/syncuppixels.html">スクリプト例</a>があげられています。確かにvcodeという名前でCookieIDっぽいものがパラメータとして付与されているっぽいですね。。。</p>
+
+<h2>まとめ</h2>
+
+<p>クエリストリングにCookieIDを載せてやりとりを行っているあたり、セキュリティ的にどうなんだという気もしますが、現状ではCookieデータの収集にはこのような技術が使われているようです。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[DMPについて調べたまとめ（概要編）]]></title>
