@@ -4,7 +4,7 @@
   <title><![CDATA[Category: adtech | adtech周辺に興味がある人の四方山話]]></title>
   <link href="http://rindai87.github.com/blog/categories/adtech/atom.xml" rel="self"/>
   <link href="http://rindai87.github.com/"/>
-  <updated>2012-11-19T01:56:20+09:00</updated>
+  <updated>2012-11-25T22:25:14+09:00</updated>
   <id>http://rindai87.github.com/</id>
   <author>
     <name><![CDATA[Norihiro Shimoda]]></name>
@@ -12,6 +12,200 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[CookieSyncを試してみる]]></title>
+    <link href="http://rindai87.github.com/blog/2012/11/25/simple-cookiesync/"/>
+    <updated>2012-11-25T20:23:00+09:00</updated>
+    <id>http://rindai87.github.com/blog/2012/11/25/simple-cookiesync</id>
+    <content type="html"><![CDATA[<p>ここまでDMPに関して、特にデータの収集面に関しての概要をまとめてきました。</p>
+
+<ul>
+<li><a href="http://rindai87.github.com/blog/2012/11/16/how-to-sync-cookie/">CookieSyncについて</a></li>
+<li><a href="http://rindai87.github.com/blog/2012/11/17/how-to-collect-in-online/">オンラインデータの収集について</a></li>
+<li><a href="http://rindai87.github.com/blog/2012/11/19/how-to-collect-in-offline/">オフラインデータの収集について</a></li>
+</ul>
+
+
+<p>ここまで来るとだんだん自分でも実装したくなってきます。実装方法は色々あるとは思いますが、CookieSyncを実際に試してみたいと思ったので、ものすごくシンプルな構成でCookieSyncを実装してみました。</p>
+
+<h2>構成とシナリオ</h2>
+
+<p>構成というほど大したものでは無いですが、以下の構成及びユーザーの動きを想定しました。</p>
+
+<h3>構成</h3>
+
+<p>{% img /images/simple_sync/sync_image.png %}</p>
+
+<ul>
+<li>siteA：DMPとCookieSyncを行いたいWebサイト</li>
+<li>ユーザー</li>
+<li>DMP：siteAのCookieSync相手</li>
+</ul>
+
+
+<h3>シナリオ</h3>
+
+<ol>
+<li>siteAにはCookieSync用の1x1pixelの画像を仕込む</li>
+<li>ユーザーがsiteAに来訪</li>
+<li>ユーザーにはsiteAのCookieがセットされる</li>
+<li>siteAからDMPに画像のリクエスト</li>
+<li>DMP側ではリクエストからsiteAのCookieIDを取得してユーザーにDMP側のCookieを発行しつつ、1x1の画像を返す</li>
+</ol>
+
+
+<h3>siteA側</h3>
+
+<ul>
+<li>cidというCookieでユーザーにIDを振る(1000までの乱数)</li>
+<li>DMP.comに対して、/DMP/${cid}.gifという画像をリクエスト</li>
+<li>echoしてる部分はCookieの状態を見るためだけなので適宜無視してください</li>
+</ul>
+
+
+<p>``` php siteAのページ (index.php)
+&lt;?php
+if(!isset($_COOKIE["cid"])) {</p>
+
+<pre><code>    echo "このサイトのCookieを保有していない&lt;br /&gt;&lt;br /&gt;";
+    echo "Cookieの生成&lt;br /&gt;";
+    $cid = mt_rand(1,1000);
+    setcookie("cid", $cid);
+    echo "保有しているCookie : cid = " . $cid . "&lt;br /&gt;&lt;br /&gt;";
+
+    echo "DMP用のクエリストリング生成&lt;br /&gt;";
+    $query_string = $cid;
+    echo "生成されたクエリストリング : " . $query_string;
+</code></pre>
+
+<p>} else {</p>
+
+<pre><code>    echo "このサイトのCookieを保有している&lt;br /&gt;";
+    echo "保有しているCookie : cid = " . $_COOKIE["cid"] . "&lt;br /&gt;&lt;br /&gt;";
+
+    echo "DMP用のクエリストリング生成&lt;br /&gt;";
+    $query_string = $_COOKIE["cid"];
+    echo "生成されたクエリストリング : " . $query_string;
+</code></pre>
+
+<p>}</p>
+
+<p>?></p>
+
+<p>&lt;!DOCTYPE html>
+<html></p>
+
+<p><head>
+<meta charset="UTF-8">
+<title>Cookie Syncのテスト</title>
+</head></p>
+
+<p><body></p>
+
+<pre><code>    &lt;h1&gt;Cookie Syncのテスト&lt;/h1&gt;
+
+    &lt;p&gt;1x1ピクセルのダミー画像を呼ぶ例
+   &lt;img src="http://DMP.com/DMP/&lt;?php echo htmlspecialchars($query_string, ENT_NOQUOTES, 'utf-8') ?&gt;.gif" alt="" width="1" heigth="1"&gt;&lt;/p&gt;
+</code></pre>
+
+<p></body></p>
+
+<p></html>
+```</p>
+
+<h3>DMP側</h3>
+
+<p>単純にphpに対してクエリストリング付与して呼び出したり、画像にクエリストリング付与して呼び出すのでもいいのですが、それっぽい感じにするために.htaccessを使います。</p>
+
+<ul>
+<li>画像の置いているディレクトリに.htaccess設置。今回は/DMP/に設置しています。</li>
+<li>同じ階層に1x1.phpという画像を返すphpを設置</li>
+<li>${cid}.gifというアクセスを1x1.php?cid=${cid}にRewrite</li>
+<li>1x1.phpでは、DMPのCookieの発行(dmpid：1000までの乱数)と、クエリストリングを受け取りマッチング処理</li>
+</ul>
+
+
+<p><code>bash .htaccess
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)\.gif$ /DMP/1x1.php?cid=$1
+</code></p>
+
+<p>``` php ${cid}.gifによって実行されるphpプログラム(1x1.php)
+&lt;?php
+// まだDMP側のIDが振られていないユーザーにCookieを発行
+if (!isset($_COOKIE["dmpid"])) {</p>
+
+<pre><code>    $dmpid = mt_rand(1, 1000);
+    setcookie("dmpid", $dmpid);
+</code></pre>
+
+<p>}</p>
+
+<p>// ここでcidとdmpidをマッチングする処理
+// if (isset($_COOKIE["cid"])) {
+//      hogehoge;
+// }
+// DBに格納するとか</p>
+
+<p>// 1x1pixelの画像としてのレスポンスを返す
+header('Content-Type: image/gif');
+header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+header('Pragma: no-cache');
+header('Cache-Control: no-store, no-cache, must-revalidate');
+header('Cache-Control: post-check=0, pre-check=0', false);
+echo base64_decode('R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==');
+?>
+```</p>
+
+<h2>実際に動かしてみる</h2>
+
+<p>VM2台立ち上げて実験してみました。</p>
+
+<ul>
+<li>192.168.80.140 : siteA</li>
+<li>192.168.80.142 : DMP</li>
+</ul>
+
+
+<p>に対応しています。</p>
+
+<h3>CookieSync前</h3>
+
+<ul>
+<li>前の処理のCookieIDが画面には残っていますが、ブラウザはCookieを所有していません。</li>
+</ul>
+
+
+<p>{% img /images/simple_sync/sync_before.png %}</p>
+
+<h3>CookieSync後</h3>
+
+<ul>
+<li>siteA(192.168.80.140, cid)とDMP(192.168.80.142, dmpid)の双方のCookie情報がブラウザに存在していることが確認できます。</li>
+<li>DMP側にはcidとdmpidの双方が渡っています。dmpidを持ってCookieSyncを行なってきたユーザーは特定済みなので、その他の提携サイトからdmpidが振られているユーザーが訪れることで、データのカバー率がどんどん向上していきます。</li>
+</ul>
+
+
+<p>{% img /images/simple_sync/sync_after.png %}</p>
+
+<h2>まとめ</h2>
+
+<p>非常にシンプルな形ですが、CookieSyncが実現できることを確認しました。実際は大量のリクエストを捌くためのサーバーチューニングや、データの保持に関するアーキテクチャの検討が必要だと思いますが、とりあえず1x1ピクセルの画像を利用すればいいということの確認ができました。</p>
+
+<p>実利用にはJavascriptのタグを置く形で実現することが多いと思いますが、こちらもまた別の機会に試してみたいと思います。</p>
+
+<p>というわけで、しばらく重めの話が続いたので、少し軽めのお話でした。</p>
+
+<h2>参考</h2>
+
+<p>以下のサイトを参考にしました。
+* <a href="http://freesoft.tvbok.com/tips/security/web_beacon.html">本当は怖い？怖くない？Webビーコンの仕組みを知ろう。</a>
+* <a href="http://www.pahoo.org/e-soul/privacy/athome/athome-026.shtm">Webビーコンによるアクセス情報収集</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[DMPはどのようにCookieデータを収集しているか（オフラインデータ編）]]></title>
@@ -93,7 +287,7 @@ the necessary information.
 <h2>実際にどうやってデータの統合を行うか</h2>
 
 <p>ここまで、概論をだらだらと見てきましたが、現実はかなりシンプルなようです。
-<img src="/images/matchservice.png"></p>
+{% img /images/matchservice.png %}</p>
 
 <h3>登場人物</h3>
 
@@ -150,7 +344,7 @@ DMPはこの技術を駆使してCookie情報を収集し、オンラインの�
 
 <h2>DMPが保有しているデータ</h2>
 
-<p><img src="http://www.adopsinsider.com/wp-content/uploads/2011/07/data-management-platform-integration1.jpg"></p>
+<p>{% img http://www.adopsinsider.com/wp-content/uploads/2011/07/data-management-platform-integration1.jpg %}</p>
 
 <p>出典：<a href="http://www.adopsinsider.com/online-ad-measurement-tracking/data-management-platforms/data-management-centralize-and-synchronize-your-user-data/">Data Management Part II: Centralize and Synchronize Your User Data</a></p>
 
@@ -179,7 +373,7 @@ DMPはこの技術を駆使してCookie情報を収集し、オンラインの�
 
 <h2>では実際にどのようにデータを収集しているか</h2>
 
-<p><img src="http://www.adopsinsider.com/wp-content/uploads/2011/07/data-management-platform-redirect-process.jpg"></p>
+<p>{% img http://www.adopsinsider.com/wp-content/uploads/2011/07/data-management-platform-redirect-process.jpg %}</p>
 
 <p>出典：<a href="http://www.adopsinsider.com/online-ad-measurement-tracking/data-management-platforms/syncing-online-data-to-a-data-management-platform/">Data Management Part III: Syncing Online Data to a Data Management Platform</a></p>
 
@@ -277,7 +471,7 @@ DMPはこの技術を駆使してCookie情報を収集し、オンラインの�
 <h3>ケーススタディ</h3>
 
 <p>文字だけではわかりにくいので簡単な図も書いてみました。
-<img src="/images/ssp-to-dsp.png"></p>
+{% img /images/ssp-to-dsp.png %}</p>
 
 <ol>
 <li>user123がstoreABCを訪れる。150$の靴をカートに入れるも離脱</li>
@@ -371,47 +565,6 @@ DMPはこの技術を駆使してCookie情報を収集し、オンラインの�
 
 <p>DMPには、cookie情報の収集・cookie情報の結合・cookie情報の解析・解析情報の提供まで幅広く役割があるみたいですね。本来は配信とは独立しているもののようですが、日本ではいわゆるDMP的なことを単独で事業にしている例はなさそうです。<a href="http://www.xrost.ne.jp/">xrost</a>などのDMP＋配信事業(DSP/SSP等)を行なっている例はありそうです(中身を知っているわけではないので例として適切なのかはわかりませんが...）。
 今後日本の市場として、配信とは切り離されたところでのDMPが出てくるかどうかですが、プライバシーやセキュリティに対するルール/感覚が米国とは異なるため、必ずしも同じ形に進化していくわけではないと思われます。米国でも、<a href="http://rindai87.github.com/blog/2012/11/11/the-future-of-the-cookie/">今のCookie偏重のデータ収集/活用の流れはよろしくないという動きが出てきているようなので</a>、DMP自体がどうなっていくのかも楽しみです。やはり、データ分析/活用に興味のある人間としては、DMPの動向はアドテクの中で一番興味をひかれる分野ですね。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[the future of the cookieという記事を読んだ]]></title>
-    <link href="http://rindai87.github.com/blog/2012/11/11/the-future-of-the-cookie/"/>
-    <updated>2012-11-11T15:00:00+09:00</updated>
-    <id>http://rindai87.github.com/blog/2012/11/11/the-future-of-the-cookie</id>
-    <content type="html"><![CDATA[<p><a href="http://www.iab.net/iablog/2012/10/the-future-of-the-cookie.html">the future of the cookie</a>という興味深いタイトルの記事がFacebookで流れてきて、個人的に気になったので概要のメモ</p>
-
-<h2>概要</h2>
-
-<p>Cookieを利用したオーディエンスデータの活用が主流だけど、その流れがこのまま加速していくと皆が疲弊する状態になるよね。なので、なんとかするワーキンググループ作ってやっていきましょう、という内容だった。
-ここで、一番重要そうなのが、<a href="http://www.iab.net/">IAB</a>が音頭をとっているということでしょう。IABはInteractive Advertising Bureauの頭文字をとった団体で、インターネットの広告の業界団体です。加盟団体の顔ぶれや、<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20100628/349664/">こういうガイドライン</a>なんかも出してる団体で、非常に影響力は強いと思われます。</p>
-
-<h2>記事のメモ</h2>
-
-<h3>Cookie利用偏重の抱える問題</h3>
-
-<p>Cookieが当初想定されていた以上の使い方をされていて、Webのインフラのようになっていて様々なところで利用されている。
-一方で、安定性や信頼性という点で色々と問題が出てきた。例えば、cookieはuserと同義語ではないが実際はユーザーと同義語として扱われている。こうした問題点を抱えつつも、利用の幅がどんどんと広がっており、今後もその逆の流れにはならないだろう。しかし、これは、広告主にも、媒体も消費者もプラットフォーマーも全てのプレイヤーに旨みのない状況になりつつある。</p>
-
-<h3>パブリッシャーの問題</h3>
-
-<p>パブリッシャーの問題は、3rdパーティー製のピクセルロード処理の蔓延である。
-ページのロードが遅くなりユーザー体験を阻害したり、集計が食い違いが発生したり、またデータ漏えいのリスクがある。
-また、収益モデルも不安定となる。3rdパーティーのピクセルロードを導入するかどうか、ユーザーがcookieをブロックしているかどうかで収益が大きく変動する。また、DNT問題や、法律の問題など、潜在的なリスクが大きい。</p>
-
-<h3>広告出側（広告主、配信者）の問題</h3>
-
-<p>広告出稿側の問題は、余分なユーザートラッキングによるネットワークへの過大な負荷や冗長なユーザートラッキングの仕組みの展開、過度な広告露出などがある。またクッキーをサポートしていないモバイルデバイスの登場への対応などもある。</p>
-
-<h3>消費者の問題</h3>
-
-<p>消費者の問題は、3rdパーティーcookieの増加のための過負荷によるユーザー体験の悪化がある。またオプトイン、オプトアウトが断片化しており、デバイス間で統合がはかれていないなどが挙げられる。</p>
-
-<p>で、cookie依存の仕組みを変えて行きましょうというワーキンググループが登場しているようです。IABが絡んでいるので、個人レベルで気軽にどうこうというよりは、各社のステークスホルダーで足並みを揃えていきましょうという割としっかりとした会みたいですね。日本で参加してる企業はあるのかなと気になるところ。</p>
-
-<h3>所感</h3>
-
-<p>色々やりたいことは分かるけど、正直Cookieのやりとりでなんとかするのはきついだろうとぼんやりと考えていたので、まさにドンピシャな動きだなという感じです。今後の動きにも注目していきたいところです。</p>
 ]]></content>
   </entry>
   
