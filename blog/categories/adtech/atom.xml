@@ -4,7 +4,7 @@
   <title><![CDATA[Category: adtech | adtech周辺に興味がある人の四方山話]]></title>
   <link href="http://rindai87.github.com/blog/categories/adtech/atom.xml" rel="self"/>
   <link href="http://rindai87.github.com/"/>
-  <updated>2012-11-25T22:25:14+09:00</updated>
+  <updated>2012-11-25T22:29:18+09:00</updated>
   <id>http://rindai87.github.com/</id>
   <author>
     <name><![CDATA[Norihiro Shimoda]]></name>
@@ -35,7 +35,7 @@
 
 <h3>構成</h3>
 
-<p>{% img /images/simple_sync/sync_image.png %}</p>
+<p><img src="/images/simple_sync/sync_image.png"></p>
 
 <ul>
 <li>siteA：DMPとCookieSyncを行いたいWebサイト</li>
@@ -119,9 +119,10 @@ if(!isset($_COOKIE["cid"])) {</p>
 <p>単純にphpに対してクエリストリング付与して呼び出したり、画像にクエリストリング付与して呼び出すのでもいいのですが、それっぽい感じにするために.htaccessを使います。</p>
 
 <ul>
-<li>画像の置いているディレクトリに.htaccess設置。今回は/DMP/に設置しています。</li>
+<li>/DMP/にて展開しています</li>
+<li>画像の置いているディレクトリに.htaccess設置</li>
 <li>同じ階層に1x1.phpという画像を返すphpを設置</li>
-<li>${cid}.gifというアクセスを1x1.php?cid=${cid}にRewrite</li>
+<li>${cid}.gifへのリクエストを1x1.php?cid=${cid}にRewrite</li>
 <li>1x1.phpでは、DMPのCookieの発行(dmpid：1000までの乱数)と、クエリストリングを受け取りマッチング処理</li>
 </ul>
 
@@ -179,7 +180,7 @@ echo base64_decode('R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==
 </ul>
 
 
-<p>{% img /images/simple_sync/sync_before.png %}</p>
+<p><img src="/images/simple_sync/sync_before.png"></p>
 
 <h3>CookieSync後</h3>
 
@@ -189,7 +190,7 @@ echo base64_decode('R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==
 </ul>
 
 
-<p>{% img /images/simple_sync/sync_after.png %}</p>
+<p><img src="/images/simple_sync/sync_after.png"></p>
 
 <h2>まとめ</h2>
 
@@ -201,9 +202,13 @@ echo base64_decode('R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==
 
 <h2>参考</h2>
 
-<p>以下のサイトを参考にしました。
-* <a href="http://freesoft.tvbok.com/tips/security/web_beacon.html">本当は怖い？怖くない？Webビーコンの仕組みを知ろう。</a>
-* <a href="http://www.pahoo.org/e-soul/privacy/athome/athome-026.shtm">Webビーコンによるアクセス情報収集</a></p>
+<p>以下のサイトを参考にしました。</p>
+
+<ul>
+<li><a href="http://freesoft.tvbok.com/tips/security/web_beacon.html">本当は怖い？怖くない？Webビーコンの仕組みを知ろう。</a></li>
+<li><a href="http://www.pahoo.org/e-soul/privacy/athome/athome-026.shtm">Webビーコンによるアクセス情報収集</a></li>
+</ul>
+
 ]]></content>
   </entry>
   
@@ -287,7 +292,7 @@ the necessary information.
 <h2>実際にどうやってデータの統合を行うか</h2>
 
 <p>ここまで、概論をだらだらと見てきましたが、現実はかなりシンプルなようです。
-{% img /images/matchservice.png %}</p>
+<img src="/images/matchservice.png"></p>
 
 <h3>登場人物</h3>
 
@@ -344,7 +349,7 @@ DMPはこの技術を駆使してCookie情報を収集し、オンラインの�
 
 <h2>DMPが保有しているデータ</h2>
 
-<p>{% img http://www.adopsinsider.com/wp-content/uploads/2011/07/data-management-platform-integration1.jpg %}</p>
+<p><img src="http://www.adopsinsider.com/wp-content/uploads/2011/07/data-management-platform-integration1.jpg"></p>
 
 <p>出典：<a href="http://www.adopsinsider.com/online-ad-measurement-tracking/data-management-platforms/data-management-centralize-and-synchronize-your-user-data/">Data Management Part II: Centralize and Synchronize Your User Data</a></p>
 
@@ -373,7 +378,7 @@ DMPはこの技術を駆使してCookie情報を収集し、オンラインの�
 
 <h2>では実際にどのようにデータを収集しているか</h2>
 
-<p>{% img http://www.adopsinsider.com/wp-content/uploads/2011/07/data-management-platform-redirect-process.jpg %}</p>
+<p><img src="http://www.adopsinsider.com/wp-content/uploads/2011/07/data-management-platform-redirect-process.jpg"></p>
 
 <p>出典：<a href="http://www.adopsinsider.com/online-ad-measurement-tracking/data-management-platforms/syncing-online-data-to-a-data-management-platform/">Data Management Part III: Syncing Online Data to a Data Management Platform</a></p>
 
@@ -471,7 +476,7 @@ DMPはこの技術を駆使してCookie情報を収集し、オンラインの�
 <h3>ケーススタディ</h3>
 
 <p>文字だけではわかりにくいので簡単な図も書いてみました。
-{% img /images/ssp-to-dsp.png %}</p>
+<img src="/images/ssp-to-dsp.png"></p>
 
 <ol>
 <li>user123がstoreABCを訪れる。150$の靴をカートに入れるも離脱</li>

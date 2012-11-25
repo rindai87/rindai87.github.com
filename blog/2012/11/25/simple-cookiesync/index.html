@@ -234,9 +234,10 @@
 <p>単純にphpに対してクエリストリング付与して呼び出したり、画像にクエリストリング付与して呼び出すのでもいいのですが、それっぽい感じにするために.htaccessを使います。</p>
 
 <ul>
-<li>画像の置いているディレクトリに.htaccess設置。今回は/DMP/に設置しています。</li>
+<li>/DMP/にて展開しています</li>
+<li>画像の置いているディレクトリに.htaccess設置</li>
 <li>同じ階層に1x1.phpという画像を返すphpを設置</li>
-<li>${cid}.gifというアクセスを1x1.php?cid=${cid}にRewrite</li>
+<li>${cid}.gifへのリクエストを1x1.php?cid=${cid}にRewrite</li>
 <li>1x1.phpでは、DMPのCookieの発行(dmpid：1000までの乱数)と、クエリストリングを受け取りマッチング処理</li>
 </ul>
 
@@ -340,9 +341,13 @@
 
 <h2>参考</h2>
 
-<p>以下のサイトを参考にしました。
-* <a href="http://freesoft.tvbok.com/tips/security/web_beacon.html">本当は怖い？怖くない？Webビーコンの仕組みを知ろう。</a>
-* <a href="http://www.pahoo.org/e-soul/privacy/athome/athome-026.shtm">Webビーコンによるアクセス情報収集</a></p>
+<p>以下のサイトを参考にしました。</p>
+
+<ul>
+<li><a href="http://freesoft.tvbok.com/tips/security/web_beacon.html">本当は怖い？怖くない？Webビーコンの仕組みを知ろう。</a></li>
+<li><a href="http://www.pahoo.org/e-soul/privacy/athome/athome-026.shtm">Webビーコンによるアクセス情報収集</a></li>
+</ul>
+
 </div>
 
 
