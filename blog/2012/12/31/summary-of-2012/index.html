@@ -1,0 +1,323 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>「インタレストターゲティングリニューアルの裏側」の裏側〜または2012年の振り返り〜 - adtech周辺に興味がある人の四方山話</title>
+  <meta name="author" content="Norihiro Shimoda">
+
+  
+  <meta name="description" content="先日、「インタレストターゲティング」リニューアルの裏側という記事を弊社エンジニアブログに書きました。エンジニアブログという制約上語れなかった話などをおりまぜて今年のまとめ的な話をしてみたいと思います。 今年は、年明け早々はいわゆるソーシャルグラフな話に取り組んでいましたが、 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rindai87.github.com/blog/2012/12/31/summary-of-2012/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="adtech周辺に興味がある人の四方山話" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36393924-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">adtech周辺に興味がある人の四方山話</a></h1>
+  
+    <h2>adtech, marketing, data analysis, etc...</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rindai87.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">「インタレストターゲティングリニューアルの裏側」の裏側〜または2012年の振り返り〜</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-31T21:14:00+09:00" pubdate data-updated="true">Dec 31<span>st</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>先日、<a href="http://alpha.mixi.co.jp/2012/11563/">「インタレストターゲティング」リニューアルの裏側</a>という記事を弊社エンジニアブログに書きました。エンジニアブログという制約上語れなかった話などをおりまぜて今年のまとめ的な話をしてみたいと思います。</p>
+
+<p>今年は、年明け早々はいわゆるソーシャルグラフな話に取り組んでいましたが、途中からはインタレストターゲティング色が濃ゆくなり、後半にアドテクに出会ったという新しい興味に出会った一年でした。</p>
+
+<h2>インタレストターゲティングに出会う</h2>
+
+<p>今年の少し暖かくなったころにインタレストターゲティングのリニューアル案件に出会いました。正直、この案件の話があった時には広告自体に興味はなかったたので、まあそういう案件か、くらいのノリでした。</p>
+
+<h2>データマイニング要素なくしました</h2>
+
+<p>実は記事をよく読んでもらえると分かるのですが、実は僕達の取り組みは、クラスタリングというブラックボックスを取り払っているので、データマイニング要素を無くしているのです。</p>
+
+<ul>
+<li>データマイニングというブラックボックス要素を排除することで柔軟に商品作成が可能になる</li>
+<li>オペレーターが作成した広告商品はすぐに販売可能にする</li>
+</ul>
+
+
+<p>の２点に注力した回収でした。クラスタリングを排除した理由としては、関連するものを集めるという処理は変わらないので効果は変わらないはずで、人間が細かくチューニング出来る要素を残したほうがむしろ効果は上がるのではないかという仮説にしたがったものでした。</p>
+
+<p>商品作成の手間が従来よりも多少かかってしまうという課題が残りましたが（のちに<a href="https://twitter.com/kimuras">@kimuras</a>さんによる商品半自動作成機能を追加することで大幅に改善された）、今までなかった機能を追加したりしています（想定impression算出機能など）ので、それを補って余りあるのではないかなと思っています。</p>
+
+<p>プロジェクト自体は途中で主要メンバーが抜けたり、クライアントテストの実施の際にバグが見つかったりと紆余曲折を経ましたが無事に終わったと思います。今の会社に入って、がっつりとゼロから機能を作ってリリースするのは初めてだったので、システム開発としてすごく勉強になりました。また、何より、Hiveを活用した機能を作れたのは自分の中で大きかったです。Hive（というかHadoop)むずかしいですねぇ。この辺の話はまたエンジニアブログに書くと思います。</p>
+
+<h2>アドテクに出会う</h2>
+
+<p>もはや記憶は定かではないのですが、夏ごろに「RTB」という言葉に出会ったと思います。やけに三文字のアルファベットを連発してきて頭に入りにくいし、前職で広告関連のトラブルに巻き込まれることが多かったために、そもそもWeb広告にいい印象を持っていなかったために、第一印象はふーん、な感じでした。が、その頃、もはやこれもきっかけは忘れましたが<a href="https://twitter.com/8maki">@8maki</a>と話すことが多くなり（<a href="http://fout.jp/">FreakOut</a>と昔オフィスが一緒だった関係なのか、@8makiはRTBまわりに詳しかった）、<a href="http://gihyo.jp/magazine/wdpress/archive/2012/vol70">Web + DB PRESS Vol.70</a>にアドテクの記事があったりと、徐々にRTBの知識をつけていくに至ります。</p>
+
+<p>秋になっても流れが続きます。9月に前職の同僚がなんとFreakOutに入社!、10月に<a href="http://www.adtech-tokyo.com/ja/">ad:tech tokyo</a>に参加して色々見て回って意識が高まりました。そして、この頃にDMPという概念に出会います。</p>
+
+<h2>DMP</h2>
+
+<p>DMP、すごく興味深いなぁと思っています。自分が興味を持って勉強していく過程などは過去記事を見ていただければ。<a href="http://rindai87.github.com/blog/2012/11/19/how-to-collect-in-offline/">これ</a>とか<a href="http://rindai87.github.com/blog/2012/12/15/introduction-of-dmp/">これ</a>とか。</p>
+
+<p>なんとも言えないのですが、昔からデータを活用して何かできるといいなぁと思っていたことのどんぴしゃな感じがたまりません。一方、データを提供してマネタイズしたところとデータを欲しているところが確実に存在するために、市場原理的にはここがもっと盛り上がっても良さそうなのにそうなっていない裏側には、非常にセンシティブな割にルールが曖昧だということがありそうですね。今後どうなっていくのかは引き続き追いかけたいと思います。</p>
+
+<h2>RTBとインタレストターゲティング</h2>
+
+<p>（ここから先は僕個人が思うところで、会社の動きとは関係ありません。あしからず。メディアに身を置くものが考えてみました、的なノリですね。）</p>
+
+<p>で、ぐるっとまわってインタレストターゲティングに戻ってきます。インタレストターゲティング単体だったら、それはまあひとつの広告商品で終わりなんですが、さらに何か活用できないかなーと思っています。</p>
+
+<p>今のRTBの流れは（自分が知るかぎりでは）、3rd partyのデータをいかに1st partyと組み合わせて活用するか、という点に重きが置かれている部分が強いのかな、と思っています。と、なると1st partyのデータの重みは必然的に小さくなるなぁと感じています。大量のデータをかき集めればこれまで分からなかったことがわかったり、できなかったことができるはず、という、いわゆるビッグデータ時代的な観点では間違ってない流れなんでしょうが、どうもメディアという観点ではこの流れにただ乗っかるのはどうなんだろうと思っていました。</p>
+
+<h3>Facebook Exchange</h3>
+
+<p>で、そのようなことを悶々と思っている時に、やっぱりやってくれました。Facebookさんです。<a href="http://marketingland.com/facebook-ad-exchange-fbx-opens-for-business-with-16-partners-21490">Facebook Exchange</a>で効果が高かったよ、という話がありました。FacebookのCookie情報を軸として外部のCookie情報を集めて「Facebook内の広告」に活用する。ああ、これはうまいし、やっぱり効果が出るんだなぁと思いました。メディア側もクリエイティブの強化に加えて、RTBの仕組みの中でうまく自分たちの集客性やユーザー特性を利用した仕組みを作ることでまだまだ可能性があると思わせてくれた事例だと思います。</p>
+
+<h2>そんなこんなで</h2>
+
+<p>なんとなく始まった案件をきっかけに、すごく勉強になった一年でした。来年も広告に係るかは正直わかりませんが、まあ楽しくやれそうな気がします。もともとスタートアップとかが好きな人間なので、まだ成熟していない分野を色々調べて妄想するのはとても楽しいですね。</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Norihiro Shimoda</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-31T21:14:00+09:00" pubdate data-updated="true">Dec 31<span>st</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/adtech/'>adtech</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+    <a href="http://b.hatena.ne.jp/entry/http://rindai87.github.com/blog/2012/12/31/summary-of-2012/" class="hatena-bookmark-button" data-hatena-bookmark-title="adtech周辺に興味がある人の四方山話" data-hatena-bookmark-layout="standard-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+  <div data-plugins-type="mixi-favorite" data-service-key="4c8f0a2416736e7d041f29ba379e6c983036846e" data-size="medium" data-href="" data-show-faces="false" data-show-count="true" data-show-comment="true" data-width=""></div><script type="text/javascript">(function(d) {var s = d.createElement('script'); s.type = 'text/javascript'; s.async = true;s.src = '//static.mixi.jp/js/plugins.js#lang=ja';d.getElementsByTagName('head')[0].appendChild(s);})(document);</script>
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rindai87.github.com/blog/2012/12/31/summary-of-2012/" data-via="rindai87" data-counturl="http://rindai87.github.com/blog/2012/12/31/summary-of-2012/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/12/15/introduction-of-dmp/" title="Previous Post: グループの勉強会での資料を公開します">&laquo; グループの勉強会での資料を公開します</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/31/summary-of-2012/">「インタレストターゲティングリニューアルの裏側」の裏側〜または2012年の振り返り〜</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/12/15/introduction-of-dmp/">グループの勉強会での資料を公開します</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/12/06/go-to-jotsugakkai-study/">情報知財研究会に行ってきた話</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/25/simple-cookiesync/">CookieSyncを試してみる</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/11/19/how-to-collect-in-offline/">DMPはどのようにCookieデータを収集しているか（オフラインデータ編）</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rindai87", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rindai87" class="twitter-follow-button" data-show-count="false">Follow @rindai87</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Norihiro Shimoda -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  <!-- Piwik --> 
+  <script type="text/javascript">
+    var pkBaseURL = (("https:" == document.location.protocol) ? "https://www12444ue.sakura.ne.jp/" : "http://www12444ue.sakura.ne.jp/");
+    document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+    try {
+        var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+        piwikTracker.trackPageView();
+        piwikTracker.enableLinkTracking();
+    } catch( err ) {}
+  </script>
+  <noscript><p><img src="http://www12444ue.sakura.ne.jp/piwik.php?idsite=1" style="border:0" alt="" /></p></noscript>
+  <!-- End Piwik Tracking Code -->
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
