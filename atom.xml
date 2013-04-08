@@ -4,7 +4,7 @@
   <title><![CDATA[adtech周辺に興味がある人の四方山話]]></title>
   <link href="http://rindai87.github.com/atom.xml" rel="self"/>
   <link href="http://rindai87.github.com/"/>
-  <updated>2013-04-04T23:03:57+09:00</updated>
+  <updated>2013-04-09T00:44:21+09:00</updated>
   <id>http://rindai87.github.com/</id>
   <author>
     <name><![CDATA[Norihiro Shimoda]]></name>
@@ -12,6 +12,155 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[QuoraでのDMPに関する質問をあさってみた]]></title>
+    <link href="http://rindai87.github.com/blog/2013/04/09/dmp-information-in-quora/"/>
+    <updated>2013-04-09T00:25:00+09:00</updated>
+    <id>http://rindai87.github.com/blog/2013/04/09/dmp-information-in-quora</id>
+    <content type="html"><![CDATA[<p>DMPの仕組みについてはだいたい妄想と気合で補完できるようになってきたのでだいたい一段落してきましたが、一方でビジネスモデルについては依然としてはっきりしていません。なので、深夜のテンションにまかせてQuoraを漁りまくったところ、色々と情報が見つかったのでまとめてみます。</p>
+
+<h2>DMPってそもそもなによ？的な質問</h2>
+
+<ul>
+<li><a href="http://www.quora.com/Data-Management-Platform-DMP/What-is-the-market-size-for-Data-Management-Platforms">What is the market size for Data Management Platform</a>
+
+<ul>
+<li>具体的な数字が出てくるわけではない</li>
+<li>Adobe, Krux, Bluekai, Lotameなど本当のDMPは数少ない</li>
+<li>AudienceScienceなどのみせかけのDMP(DMP専業じゃないってこと？)もいくつかあり、DSPやタグマネジメントなどが主たる事業となっている</li>
+<li>月間100万ユーザーに満たなくてもデータをDMPに売ればコストが発生せずに価値が生まれるので、企業がためらう理由がなくどんどん進んでいくだろうね</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Audience Targetingの平均的なCPMってどれくらいよ？的な質問</h2>
+
+<ul>
+<li><a href="http://www.quora.com/Whats-the-average-CPM-for-audience-targeting-using-data-exchanges-and-reselling-display-advertising">What&#8217;s the average CPM for audience targeting (using data exchanges and reselling display advertising)?</a>
+
+<ul>
+<li>リタゲのCPMはだいたい$2。いいオーディエンスターゲティングで$5-7あたり。すんごいよければ$20とかいくのでは、という回答。</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>LotameとかeXelateなんかのDMPのコストはおいくらよ？的な質問</h2>
+
+<ul>
+<li><a href="http://www.quora.com/Data-Management-Platform-DMP/How-much-does-a-DMP-like-Lotame-or-Exelate-cost-Assuming-Im-a-10M-unique-visitor-per-month-website-editor-what-would-I-pay">How much does a DMP like Lotame or Exelate cost? Assuming I&#8217;m a 10M unique visitor per month website editor</a>
+
+<ul>
+<li>Lotameのディレクターが答えている</li>
+<li>DMPを使って作られたオーディエンスをターゲットとするimpressionはCPMベースのプライシングである。Webサイトのボリュームによるが最低$5000のコストでいける。</li>
+<li>Lotameのディレクターとは別の人が答えていて、よくあるのは媒体がデータをDMPやDataExcahngeに提供した時には50%のレベシェア
+
+<ul>
+<li>DMPからデータを買った広告主に対するデータのコストはCPMの20%</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>DMP使ったことある人は各社のいいとこ悪いところを教えてよ？という質問</h2>
+
+<ul>
+<li><a href="http://www.quora.com/Data-Management-Platform-DMP/Has-anyone-experience-using-Data-Management-Platforms-Which-pros-and-cons-would-you-highlight-on-providers-like-Red-Aril-Krux-Demdex-Lotame-AudienceScience-Collective-Dataxu-Turn-X+1-exelate-Bluekai-or-others">Has anyone experience using Data Management Platforms ? Which pros and cons would you highlight on providers like Red Aril, Krux, Demdex, Lotame, AudienceScience, Collective, Dataxu, Turn, X+1, exelate, Bluekai or others?</a>
+
+<ul>
+<li><a href="http://www.bluekai.com/files/Case_Study_HP_Deploys_A.pdf">HPがBlukaiを活用したCaseStudyのリンク</a>が貼られていた</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Bluekaiのお値段っていくらよ？的な質問</h2>
+
+<ul>
+<li><a href="http://www.quora.com/How-does-BlueKai-price-his-data">How does Bluekai price its data?</a>
+
+<ul>
+<li>Bluekaiは&#8221;stamps&#8221;かCPM毎の値段のプライシング</li>
+<li>stampの値段は様々どんなデータかで変わる。典型的にはトータルのCPMの15%～20%</li>
+<li>Ad Exchangeでは固定CPMでデータを提供している。</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Bluekaiの競合はどこよ？的な質問</h2>
+
+<ul>
+<li><a href="http://www.quora.com/Who-competes-with-BlueKai">Who competes with BlueKai?</a>
+
+<ul>
+<li>DMP等の競合。少し古いので今はいなくなってるプレイヤーもいる</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>marketplaceというデータ売り買いするビジネスモデルってどんなんよ？的な質問</h2>
+
+<ul>
+<li><a href="http://www.quora.com/Data-Markets/What-are-the-basic-business-models-of-ad-data-marketplaces-like-Brilig-eXelate-and-BlueKai">What are the basic business models of ad data &#8220;marketplaces&#8221; like Brilig, eXelate, and BlueKai?</a>
+
+<ul>
+<li>Quoraの回答に<a href="http://www.nytimes.com/2009/03/26/business/media/26adco.html">リンク</a>が貼られていた</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>BluekaiとかeXelateのビジネスモデルってどんなんよ？的な質問</h2>
+
+<ul>
+<li><a href="http://www.quora.com/What-are-Bluekai-and-Exelates-Business-Models-What-of-share-of-spend-do-they-retain">What are Bluekai and Exelate&#8217;s Business Models?  What % of &#8216;share of spend&#8217; do they retain?</a>
+
+<ul>
+<li>メディアバイヤーに望むターゲットセグメントのCPU(Cost Per Uniques)でチャージしている</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>上記の質問みていて補足的に調べた事</h2>
+
+<h3>Bluekaiのstampについて</h3>
+
+<ul>
+<li><a href="http://blogs.bluekai.com/wp-content/uploads/2011/11/BlueKai-Glossary.pdf">BlueKai提供の用語集</a>
+
+<ul>
+<li>ビーコンとほぼ同じ意味っぽい</li>
+</ul>
+</li>
+</ul>
+
+
+<h3>Bluekaiについての日本語の記事</h3>
+
+<ul>
+<li><a href="http://startup-lab.tumblr.com/post/29950570185/bluekai">あなたのデータも取られてる？【BlueKai】に学ぶ日米の差</a></li>
+</ul>
+
+
+<h3>パーソナルデータに関するビジネスモデルの話</h3>
+
+<ul>
+<li><a href="http://www.meti.go.jp/committee/kenkyukai/shoujo/it_yugo_forum_data_wg2/pdf/001_04_00.pdf">経産省：パーソナルデータに関する海外動向</a></li>
+</ul>
+
+
+<h2>まとめ</h2>
+
+<p>よく記事をつなげて保管すると、媒体がデータ提供して、DMPがDSPとかにデータ売るときのビジネスモデルが想像出来ますね。ただ、個人的には、経産省のスライドが一番おもしろかったです。一読の価値ありですね。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[データビジネスの今後について考えてみた]]></title>
