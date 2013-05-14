@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: tech | adtech周辺に興味がある人の四方山話]]></title>
+  <link href="http://rindai87.github.com/blog/categories/tech/atom.xml" rel="self"/>
+  <link href="http://rindai87.github.com/"/>
+  <updated>2013-05-14T23:03:21+09:00</updated>
+  <id>http://rindai87.github.com/</id>
+  <author>
+    <name><![CDATA[Norihiro Shimoda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[PythonzとVirtualenvでPythonの環境を作る]]></title>
+    <link href="http://rindai87.github.com/blog/2013/05/14/pythonz-and-virtualenv/"/>
+    <updated>2013-05-14T22:58:00+09:00</updated>
+    <id>http://rindai87.github.com/blog/2013/05/14/pythonz-and-virtualenv</id>
+    <content type="html"><![CDATA[<p>ちょっとPythonを使う機会が出てきたのでメモ。Rubyでいうところのrbenvとかrvmと同等のことをPythonでする時の話です。あ、環境はMacOS Xの10.7です。</p>
+
+<h2>使うもの</h2>
+
+<p>ざっくり言うと、Pythonzが複数のバージョンのPythonを管理できて、VirtualenvはPythonの仮想実行環境を作るもの、という感じです。２つを組み合わせて、特定のバージョンのクリーンなPython実行環境を作る、と言った感じです。</p>
+
+<ul>
+<li><a href="https://pypi.python.org/pypi/virtualenv">Virtualenv</a></li>
+<li><a href="https://github.com/saghul/pythonz">Pythonz</a></li>
+</ul>
+
+
+<p><a href="http://blog.imthinker.net/entry/2013/04/06/203523">このへん</a>のRubyとの比較がわかり易かった気がします。</p>
+
+<h2>Pythonzのインストール</h2>
+
+<ul>
+<li><a href="https://github.com/saghul/pythonz">Pythonz</a>のREADME、Installationの通りで動きます。</li>
+</ul>
+
+
+<p><code>bash
+curl -kL https://raw.github.com/saghul/pythonz/master/pythonz-install | bash
+</code></p>
+
+<p>でインストール完了。bashrcに以下を追加(zshでも問題なかった)</p>
+
+<p><code>bash
+[[ -s $HOME/.pythonz/etc/bashrc ]] &amp;&amp; source $HOME/.pythonz/etc/bashrc
+</code></p>
+
+<p>あとは、以下のコマンドでインストールできるバージョンを見つけてインストールします。</p>
+
+<p>```bash
+$ pythonz list -a</p>
+
+<h1>Available Python versions</h1>
+
+<p>  # cpython:</p>
+
+<pre><code>2.4
+2.4.1
+2.4.2
+...(略)...
+</code></pre>
+
+<p>$ pythonz install 2.7.3
+$ pythonz list</p>
+
+<h1>Installed Python versions</h1>
+
+<p>  CPython-2.7.3
+```</p>
+
+<h2>Virtualenvのインストール</h2>
+
+<p>Virtualenvも特に難しいことはないです。システム環境のPythonにVirtualenvが入ることは許容しました。僕の場合、ケースに併せてクリーンな環境が欲しいわけではなく、単純にバージョン違いのPythonを管理したいだけなので、pythonzを管理しているディレクトリに適当にENV/${Version}というディレクトリを切っています。</p>
+
+<p><code>bash
+$ sudo pip install virtualenv
+$ virtualenv -p ~/.pythonz/pythons/CPython-2.7.3/bin/python ~/.pythonz/ENV/Python-2.7.3
+</code></p>
+
+<p>これで、あとは以下の用にactivateしてあげれば、完了です。</p>
+
+<p><code>bash
+$ ~/.pythonz/ENV/Python-2.7.3/bin/activate
+</code></p>
+
+<p>コンソールの先頭に、Virtualenv環境を作ったディレクトリ名がつけば無事に動いています。この例だと(Python-2.7.3)、といった感じです。あとは、その環境下でpip installしまくってゴリゴリ環境を作ります。</p>
+
+<h2>参考</h2>
+
+<ul>
+<li><a href="http://memo.fifnel.com/2012/09/191/">http://memo.fifnel.com/2012/09/191/</a></li>
+<li><a href="http://labs.opentone.co.jp/?p=1432">http://labs.opentone.co.jp/?p=1432</a></li>
+<li><a href="http://zakkie.hateblo.jp/entry/2012/09/17/062007">http://zakkie.hateblo.jp/entry/2012/09/17/062007</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

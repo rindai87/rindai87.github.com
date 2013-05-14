@@ -9,8 +9,7 @@
   <meta name="author" content="Norihiro Shimoda">
 
   
-  <meta name="description" content="タイトルの通り、アドテクノロジー/デジタルマーケティングの勉強会を開催します。 僕自身はアドテクどっぷりなお仕事をしているわけではないですが、このブログではアドテクノロジーやデジタルマーケティング面白いなーと追いかけてきた記録を残していました。
-で、最近、 &hellip;">
+  <meta name="description" content="ちょっとPythonを使う機会が出てきたのでメモ。Rubyでいうところのrbenvとかrvmと同等のことをPythonでする時の話です。あ、環境はMacOS Xの10.7です。 使うもの ざっくり言うと、Pythonzが複数のバージョンのPythonを管理できて、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +76,129 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/14/pythonz-and-virtualenv/">PythonzとVirtualenvでPythonの環境を作る</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-14T22:58:00+09:00" pubdate data-updated="true">May 14<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ちょっとPythonを使う機会が出てきたのでメモ。Rubyでいうところのrbenvとかrvmと同等のことをPythonでする時の話です。あ、環境はMacOS Xの10.7です。</p>
+
+<h2>使うもの</h2>
+
+<p>ざっくり言うと、Pythonzが複数のバージョンのPythonを管理できて、VirtualenvはPythonの仮想実行環境を作るもの、という感じです。２つを組み合わせて、特定のバージョンのクリーンなPython実行環境を作る、と言った感じです。</p>
+
+<ul>
+<li><a href="https://pypi.python.org/pypi/virtualenv">Virtualenv</a></li>
+<li><a href="https://github.com/saghul/pythonz">Pythonz</a></li>
+</ul>
+
+
+<p><a href="http://blog.imthinker.net/entry/2013/04/06/203523">このへん</a>のRubyとの比較がわかり易かった気がします。</p>
+
+<h2>Pythonzのインストール</h2>
+
+<ul>
+<li><a href="https://github.com/saghul/pythonz">Pythonz</a>のREADME、Installationの通りで動きます。</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl -kL https://raw.github.com/saghul/pythonz/master/pythonz-install | bash
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>でインストール完了。bashrcに以下を追加(zshでも問題なかった)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[[</span> -s <span class="nv">$HOME</span>/.pythonz/etc/bashrc <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">source</span> <span class="nv">$HOME</span>/.pythonz/etc/bashrc
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>あとは、以下のコマンドでインストールできるバージョンを見つけてインストールします。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>pythonz list -a
+</span><span class='line'><span class="c"># Available Python versions</span>
+</span><span class='line'>  <span class="c"># cpython:</span>
+</span><span class='line'>    2.4
+</span><span class='line'>    2.4.1
+</span><span class='line'>    2.4.2
+</span><span class='line'>    ...<span class="o">(</span>略<span class="o">)</span>...
+</span><span class='line'><span class="nv">$ </span>pythonz install 2.7.3
+</span><span class='line'><span class="nv">$ </span>pythonz list
+</span><span class='line'><span class="c"># Installed Python versions</span>
+</span><span class='line'>  CPython-2.7.3
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Virtualenvのインストール</h2>
+
+<p>Virtualenvも特に難しいことはないです。システム環境のPythonにVirtualenvが入ることは許容しました。僕の場合、ケースに併せてクリーンな環境が欲しいわけではなく、単純にバージョン違いのPythonを管理したいだけなので、pythonzを管理しているディレクトリに適当にENV/${Version}というディレクトリを切っています。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo pip install virtualenv
+</span><span class='line'><span class="nv">$ </span>virtualenv -p ~/.pythonz/pythons/CPython-2.7.3/bin/python ~/.pythonz/ENV/Python-2.7.3
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これで、あとは以下の用にactivateしてあげれば、完了です。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>~/.pythonz/ENV/Python-2.7.3/bin/activate
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>コンソールの先頭に、Virtualenv環境を作ったディレクトリ名がつけば無事に動いています。この例だと(Python-2.7.3)、といった感じです。あとは、その環境下でpip installしまくってゴリゴリ環境を作ります。</p>
+
+<h2>参考</h2>
+
+<ul>
+<li><a href="http://memo.fifnel.com/2012/09/191/">http://memo.fifnel.com/2012/09/191/</a></li>
+<li><a href="http://labs.opentone.co.jp/?p=1432">http://labs.opentone.co.jp/?p=1432</a></li>
+<li><a href="http://zakkie.hateblo.jp/entry/2012/09/17/062007">http://zakkie.hateblo.jp/entry/2012/09/17/062007</a></li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1303,113 +1425,6 @@ DMPはこの技術を駆使してCookie情報を収集し、オンラインの�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/11/16/how-to-sync-cookie/">DMPはどのようにCookieデータを収集しているか（CookieSync編）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-16T02:01:00+09:00" pubdate data-updated="true">Nov 16<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>DMPがどのようにCookieデータを収集しているかについて、ある程度知識が固まってきたのでまとめようと思います。まずはDMPのデータ収集の肝であるCookieSyncについて数回に分けて書いていこうと思います。</p>
-
-<h2>DMPの役割とは</h2>
-
-<p><a href="http://rindai87.github.com/blog/2012/11/11/about-dmp/">こちら</a>にも書いた通り、DMP自体にはデータを解析するだけでなく様々な役割があります。データの分析/解析だけでなく、データを収集するところにも関わっているということを念頭に置くと理解が深まります。</p>
-
-<h2>DMPが集めるデータと収集方法</h2>
-
-<p>DMPはブラウザのCookie情報を収集し整理し、利用しやすい形で提供しています。収集にはCookieSyncという技術が用いられています。</p>
-
-<h2>CookieSync概要</h2>
-
-<p>このあとCookieSyncの実例をあげますが、まずは基本的なCookieSyncの流れの説明をします。CookieSyncは外部のサーバーに対して1pixelの画像のロードを行うことで実現します。</p>
-
-<ol>
-<li>Webサイトにタグを埋め込みます。</li>
-<li>Webサイトを訪れたユーザーには、WebサイトのCookieが発行されます。</li>
-<li>Webサイトに埋め込まれたタグによって画像をロードしようと外部のサーバーにリクエストを送ります。</li>
-<li>そのリクエストは、WebサイトにおけるCookie IDをクエリストリングに付与されています</li>
-<li>外部サーバーはクエリストリングの情報によってWebサイトにおけるあるユーザーのCookie IDを知ることができます。</li>
-<li>またそのリクエストに対して、外部サーバーにおけるCookieを発行します。</li>
-<li>これによって、2つの異なるシステムにおけるCookie IDを交換することができました。</li>
-</ol>
-
-
-<p>これは実例があった方が理解が深まりますので、まずは<a href="">こちら</a>で紹介されているSSP-DSP間のCookieSyncについて見て行きましょう。</p>
-
-<h2>SSPとDSP間のCookieSync</h2>
-
-<p><a href="http://www.adopsinsider.com/ad-exchanges/ssp-to-dsp-cookie-synching-explained/">こちら</a>に書かれているものをまとめたものになります。ユースケースとして、DSPの出稿主であるあるショッピングサイトが、自社のショッピングサイトで商品をカートに入れるまで進んだユーザーに対してターゲティングを行いたい、という状況です。</p>
-
-<h3>登場人物</h3>
-
-<ul>
-<li>ショッピングサイト：storeABC, DSPを利用している</li>
-<li>webサイト：awesomesite.com, SSPを利用している</li>
-<li>ユーザー：user123</li>
-<li>DSP：DSP456</li>
-<li>SSP：SSP123</li>
-</ul>
-
-
-<h3>ケーススタディ</h3>
-
-<p>文字だけではわかりにくいので簡単な図も書いてみました。
-<img src="/images/ssp-to-dsp.png"></p>
-
-<ol>
-<li>user123がstoreABCを訪れる。150$の靴をカートに入れるも離脱</li>
-<li>user123はカートのページにはDSP456へ1pixelの画像を取得してにいくタグを仕込んでいた。なので、user123はDSP456のCookieID=DSPcookie789が発行されている。</li>
-<li>user123はネットサーフィンを行なっていて、awesomesite.comにたどり着く。awesomesite.comはSSPを利用している</li>
-<li>awesomesite.comでも、SSPへのリダイレクトを行わせるのでuser123には、SSP123のCookieID=SSPcookiexyzが発行されている。</li>
-<li>今user123は、DSPとSSPの双方のCookie情報を保有している</li>
-</ol>
-
-
-<p>ここまでで、user123にはSSPとDSPのCookie情報が保存されていることになります。これをどう交換するのか、が次のポイントです。ここでもう一度目的のおさらい、「DSPはいかにしてSSPからのbidリクエストから自分たちの保有しているCookie情報にマッチするユーザーを探すのか」です。
-結論から言うと、初めてのbidでは不可能です。SSPだけがユーザーの情報(とSSPで管理するためのCookie情報)を持っています。CookieSyncは競売が終了した後に発生します。</p>
-
-<ol>
-<li>SSP123が競売に勝利するDSPを選択した後、SSP123はuser123をDSPに(DSP456を含む)にユーザーをリダイレクトさせます。クエリストリングにSSP123のCookieID=SSPcookieXYZを付与したリダイレクトです。</li>
-<li>なんとここでSSPcookieXYZをクエリストリングに持ってやってきたuser123がDSP456のcookieID=DSPcookie789を持っているではないですか</li>
-<li>こうして、SSPCookieXYZ=DSPCookie789は同一ユーザーのものと分かり、DSPはその情報をDBに保存しておきます。</li>
-<li>すると次にSSPCookieXYXのbidリクエストがきた時には、user123からのリクエストだということが分かるようになります。</li>
-</ol>
-
-
-<p>CookieSyncのポイントはオークション終了後に実施することで、UXの低下を防ぐという工夫を行なっています。CookieSyncの実例としてPubmetricなどの主要なSSPが行なっている<a href="http://ads.pubmatic.com/AdServer/js/syncuppixels.html">スクリプト例</a>があげられています。確かにvcodeという名前でCookieIDっぽいものがパラメータとして付与されているっぽいですね。。。</p>
-
-<h2>まとめ</h2>
-
-<p>クエリストリングにCookieIDを載せてやりとりを行っているあたり、セキュリティ的にどうなんだという気もしますが、現状ではCookieデータの収集にはこのような技術が使われているようです。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1425,6 +1440,10 @@ DMPはこの技術を駆使してCookie情報を収集し、オンラインの�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/05/14/pythonz-and-virtualenv/">PythonzとVirtualenvでPythonの環境を作る</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/05/07/adtech-study/">第1回渋谷アドテク勉強会を開催します</a>
       </li>
     
@@ -1438,10 +1457,6 @@ DMPはこの技術を駆使してCookie情報を収集し、オンラインの�
     
       <li class="post">
         <a href="/blog/2012/12/31/summary-of-2012/">「インタレストターゲティングリニューアルの裏側」の裏側〜または2012年の振り返り〜</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/15/introduction-of-dmp/">グループの勉強会での資料を公開します</a>
       </li>
     
   </ul>

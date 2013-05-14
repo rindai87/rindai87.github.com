@@ -1,0 +1,346 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>PythonzとVirtualenvでPythonの環境を作る - adtech周辺に興味がある人の四方山話</title>
+  <meta name="author" content="Norihiro Shimoda">
+
+  
+  <meta name="description" content="ちょっとPythonを使う機会が出てきたのでメモ。Rubyでいうところのrbenvとかrvmと同等のことをPythonでする時の話です。あ、環境はMacOS Xの10.7です。 使うもの ざっくり言うと、Pythonzが複数のバージョンのPythonを管理できて、 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://rindai87.github.com/blog/2013/05/14/pythonz-and-virtualenv/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="adtech周辺に興味がある人の四方山話" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36393924-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">adtech周辺に興味がある人の四方山話</a></h1>
+  
+    <h2>adtech, marketing, data analysis, etc...</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:rindai87.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">PythonzとVirtualenvでPythonの環境を作る</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-14T22:58:00+09:00" pubdate data-updated="true">May 14<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>ちょっとPythonを使う機会が出てきたのでメモ。Rubyでいうところのrbenvとかrvmと同等のことをPythonでする時の話です。あ、環境はMacOS Xの10.7です。</p>
+
+<h2>使うもの</h2>
+
+<p>ざっくり言うと、Pythonzが複数のバージョンのPythonを管理できて、VirtualenvはPythonの仮想実行環境を作るもの、という感じです。２つを組み合わせて、特定のバージョンのクリーンなPython実行環境を作る、と言った感じです。</p>
+
+<ul>
+<li><a href="https://pypi.python.org/pypi/virtualenv">Virtualenv</a></li>
+<li><a href="https://github.com/saghul/pythonz">Pythonz</a></li>
+</ul>
+
+
+<p><a href="http://blog.imthinker.net/entry/2013/04/06/203523">このへん</a>のRubyとの比較がわかり易かった気がします。</p>
+
+<h2>Pythonzのインストール</h2>
+
+<ul>
+<li><a href="https://github.com/saghul/pythonz">Pythonz</a>のREADME、Installationの通りで動きます。</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>curl -kL https://raw.github.com/saghul/pythonz/master/pythonz-install | bash
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>でインストール完了。bashrcに以下を追加(zshでも問題なかった)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[[</span> -s <span class="nv">$HOME</span>/.pythonz/etc/bashrc <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">source</span> <span class="nv">$HOME</span>/.pythonz/etc/bashrc
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>あとは、以下のコマンドでインストールできるバージョンを見つけてインストールします。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>pythonz list -a
+</span><span class='line'><span class="c"># Available Python versions</span>
+</span><span class='line'>  <span class="c"># cpython:</span>
+</span><span class='line'>    2.4
+</span><span class='line'>    2.4.1
+</span><span class='line'>    2.4.2
+</span><span class='line'>    ...<span class="o">(</span>略<span class="o">)</span>...
+</span><span class='line'><span class="nv">$ </span>pythonz install 2.7.3
+</span><span class='line'><span class="nv">$ </span>pythonz list
+</span><span class='line'><span class="c"># Installed Python versions</span>
+</span><span class='line'>  CPython-2.7.3
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Virtualenvのインストール</h2>
+
+<p>Virtualenvも特に難しいことはないです。システム環境のPythonにVirtualenvが入ることは許容しました。僕の場合、ケースに併せてクリーンな環境が欲しいわけではなく、単純にバージョン違いのPythonを管理したいだけなので、pythonzを管理しているディレクトリに適当にENV/${Version}というディレクトリを切っています。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo pip install virtualenv
+</span><span class='line'><span class="nv">$ </span>virtualenv -p ~/.pythonz/pythons/CPython-2.7.3/bin/python ~/.pythonz/ENV/Python-2.7.3
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>これで、あとは以下の用にactivateしてあげれば、完了です。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>~/.pythonz/ENV/Python-2.7.3/bin/activate
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>コンソールの先頭に、Virtualenv環境を作ったディレクトリ名がつけば無事に動いています。この例だと(Python-2.7.3)、といった感じです。あとは、その環境下でpip installしまくってゴリゴリ環境を作ります。</p>
+
+<h2>参考</h2>
+
+<ul>
+<li><a href="http://memo.fifnel.com/2012/09/191/">http://memo.fifnel.com/2012/09/191/</a></li>
+<li><a href="http://labs.opentone.co.jp/?p=1432">http://labs.opentone.co.jp/?p=1432</a></li>
+<li><a href="http://zakkie.hateblo.jp/entry/2012/09/17/062007">http://zakkie.hateblo.jp/entry/2012/09/17/062007</a></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Norihiro Shimoda</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-14T22:58:00+09:00" pubdate data-updated="true">May 14<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/tech/'>tech</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+    <a href="http://b.hatena.ne.jp/entry/http://rindai87.github.com/blog/2013/05/14/pythonz-and-virtualenv/" class="hatena-bookmark-button" data-hatena-bookmark-title="adtech周辺に興味がある人の四方山話" data-hatena-bookmark-layout="standard-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+
+  <div data-plugins-type="mixi-favorite" data-service-key="4c8f0a2416736e7d041f29ba379e6c983036846e" data-size="medium" data-href="" data-show-faces="false" data-show-count="true" data-show-comment="true" data-width=""></div><script type="text/javascript">(function(d) {var s = d.createElement('script'); s.type = 'text/javascript'; s.async = true;s.src = '//static.mixi.jp/js/plugins.js#lang=ja';d.getElementsByTagName('head')[0].appendChild(s);})(document);</script>
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://rindai87.github.com/blog/2013/05/14/pythonz-and-virtualenv/" data-via="rindai87" data-counturl="http://rindai87.github.com/blog/2013/05/14/pythonz-and-virtualenv/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/05/07/adtech-study/" title="Previous Post: 第1回渋谷アドテク勉強会を開催します">&laquo; 第1回渋谷アドテク勉強会を開催します</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/05/14/pythonz-and-virtualenv/">PythonzとVirtualenvでPythonの環境を作る</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/07/adtech-study/">第1回渋谷アドテク勉強会を開催します</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/09/dmp-information-in-quora/">QuoraでのDMPに関する質問をあさってみた</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/04/new-dmp-system/">データビジネスの今後について考えてみた</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/12/31/summary-of-2012/">「インタレストターゲティングリニューアルの裏側」の裏側〜または2012年の振り返り〜</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("rindai87", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/rindai87" class="twitter-follow-button" data-show-count="false">Follow @rindai87</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Norihiro Shimoda -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
