@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: python | adtech周辺に興味がある人の四方山話]]></title>
-  <link href="http://rindai87.github.com/blog/categories/python/atom.xml" rel="self"/>
-  <link href="http://rindai87.github.com/"/>
-  <updated>2013-05-30T00:02:24+09:00</updated>
-  <id>http://rindai87.github.com/</id>
+  <link href="http://rindai87.github.io/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://rindai87.github.io/"/>
+  <updated>2013-06-01T09:54:12+09:00</updated>
+  <id>http://rindai87.github.io/</id>
   <author>
     <name><![CDATA[Norihiro Shimoda]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[PythonzとVirtualenvでPythonの環境を作る]]></title>
-    <link href="http://rindai87.github.com/blog/2013/05/14/pythonz-and-virtualenv/"/>
+    <link href="http://rindai87.github.io/blog/2013/05/14/pythonz-and-virtualenv/"/>
     <updated>2013-05-14T22:58:00+09:00</updated>
-    <id>http://rindai87.github.com/blog/2013/05/14/pythonz-and-virtualenv</id>
+    <id>http://rindai87.github.io/blog/2013/05/14/pythonz-and-virtualenv</id>
     <content type="html"><![CDATA[<p>ちょっとPythonを使う機会が出てきたのでメモ。Rubyでいうところのrbenvとかrvmと同等のことをPythonでする時の話です。あ、環境はMacOS Xの10.7です。</p>
 
 <h2>使うもの</h2>

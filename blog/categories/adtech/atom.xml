@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: adtech | adtech周辺に興味がある人の四方山話]]></title>
-  <link href="http://rindai87.github.com/blog/categories/adtech/atom.xml" rel="self"/>
-  <link href="http://rindai87.github.com/"/>
-  <updated>2013-05-30T00:02:24+09:00</updated>
-  <id>http://rindai87.github.com/</id>
+  <link href="http://rindai87.github.io/blog/categories/adtech/atom.xml" rel="self"/>
+  <link href="http://rindai87.github.io/"/>
+  <updated>2013-06-01T09:54:12+09:00</updated>
+  <id>http://rindai87.github.io/</id>
   <author>
     <name><![CDATA[Norihiro Shimoda]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[「DMP入門」読了]]></title>
-    <link href="http://rindai87.github.com/blog/2013/05/29/reading-dmp-book/"/>
+    <link href="http://rindai87.github.io/blog/2013/05/29/reading-dmp-book/"/>
     <updated>2013-05-29T23:26:00+09:00</updated>
-    <id>http://rindai87.github.com/blog/2013/05/29/reading-dmp-book</id>
+    <id>http://rindai87.github.io/blog/2013/05/29/reading-dmp-book</id>
     <content type="html"><![CDATA[<table  border="0" cellpadding="5"><tr><td valign="top"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/484439584X/rindai87-22/ref=nosim/" target="_top"><img src="http://ecx.images-amazon.com/images/I/41TmJl45BgL._SL160_.jpg" border="0" alt="顧客を知るためのデータマネジメントプラットフォーム DMP入門 (NextPublishing)" /></a></td><td valign="top"><font size="-1"><a href="http://www.amazon.co.jp/%E9%A1%A7%E5%AE%A2%E3%82%92%E7%9F%A5%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%83%9E%E3%83%8D%E3%82%B8%E3%83%A1%E3%83%B3%E3%83%88%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0-DMP%E5%85%A5%E9%96%80-NextPublishing-%E6%A8%AA%E5%B1%B1-%E9%9A%86%E6%B2%BB/dp/484439584X%3FSubscriptionId%3D15SMZCTB9V8NGR2TW082%26tag%3Drindai87-22%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D484439584X" target="_top">顧客を知るためのデータマネジメントプラットフォーム DMP入門 (NextPublishing)</a><img src="http://www.assoc-amazon.jp/e/ir?t=rindai87-22&l=ur2&o=9" width="1" height="1" style="border: none;" alt="" /><br />横山 隆治 菅原 健一 草野 隆史 <br /><br />インプレスR&D  2013-05-27<br />売り上げランキング : 231<br /><br /><a href="http://www.amazon.co.jp/%E9%A1%A7%E5%AE%A2%E3%82%92%E7%9F%A5%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AE%E3%83%87%E3%83%BC%E3%82%BF%E3%83%9E%E3%83%8D%E3%82%B8%E3%83%A1%E3%83%B3%E3%83%88%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0-DMP%E5%85%A5%E9%96%80-NextPublishing-%E6%A8%AA%E5%B1%B1-%E9%9A%86%E6%B2%BB/dp/484439584X%3FSubscriptionId%3D15SMZCTB9V8NGR2TW082%26tag%3Drindai87-22%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D484439584X" target="_top">Amazonで詳しく見る</a></font> <font size="-2">by <a href="http://www.goodpic.com/mt/aws/index.html" >G-Tools</a></font></td></tr></table>
 
 
@@ -110,9 +110,9 @@
   
   <entry>
     <title type="html"><![CDATA[第1回渋谷アドテク勉強会を開催しました]]></title>
-    <link href="http://rindai87.github.com/blog/2013/05/18/shibuya-adtech-study-1st/"/>
+    <link href="http://rindai87.github.io/blog/2013/05/18/shibuya-adtech-study-1st/"/>
     <updated>2013-05-18T01:57:00+09:00</updated>
-    <id>http://rindai87.github.com/blog/2013/05/18/shibuya-adtech-study-1st</id>
+    <id>http://rindai87.github.io/blog/2013/05/18/shibuya-adtech-study-1st</id>
     <content type="html"><![CDATA[<p>題名の通り、<a href="http://adtech-shibuya.doorkeeper.jp/events/3869">第1回渋谷アドテク勉強会</a>を開催し、無事に完了しました。会場係は何度も経験していますが、主催者という立場は初めてでした。申し込み時は異常に反応が良く、1時間くらいで定員に達し、その後もキャンセル待ち70名程度まで伸びましたが、<a href="https://twitter.com/naoya_ito/status/335331731584462848">開始10分まではほぼガラガラ</a>でした。どうなることやとキモを冷やしましたが、19:00過ぎたあたりから多くの人が訪れてくださり、無事に開催の運びとなりました。概ね好評だった気がするので、また2回目以降も開催していきたいと思います。主催者兼会場係、のような立場だったのでほとんど発表聞けていませんが、以下まとめなどを書いてみます。</p>
 
 <h2>株式会社adingo 鈴木さん『Head First Ad Technology and DMP』</h2>
@@ -148,9 +148,9 @@
   
   <entry>
     <title type="html"><![CDATA[第1回渋谷アドテク勉強会を開催します]]></title>
-    <link href="http://rindai87.github.com/blog/2013/05/07/adtech-study/"/>
+    <link href="http://rindai87.github.io/blog/2013/05/07/adtech-study/"/>
     <updated>2013-05-07T01:13:00+09:00</updated>
-    <id>http://rindai87.github.com/blog/2013/05/07/adtech-study</id>
+    <id>http://rindai87.github.io/blog/2013/05/07/adtech-study</id>
     <content type="html"><![CDATA[<p>タイトルの通り、アドテクノロジー/デジタルマーケティングの勉強会を開催します。</p>
 
 <p>僕自身はアドテクどっぷりなお仕事をしているわけではないですが、このブログではアドテクノロジーやデジタルマーケティング面白いなーと追いかけてきた記録を残していました。
@@ -176,9 +176,9 @@
   
   <entry>
     <title type="html"><![CDATA[QuoraでのDMPに関する質問をあさってみた]]></title>
-    <link href="http://rindai87.github.com/blog/2013/04/09/dmp-information-in-quora/"/>
+    <link href="http://rindai87.github.io/blog/2013/04/09/dmp-information-in-quora/"/>
     <updated>2013-04-09T00:25:00+09:00</updated>
-    <id>http://rindai87.github.com/blog/2013/04/09/dmp-information-in-quora</id>
+    <id>http://rindai87.github.io/blog/2013/04/09/dmp-information-in-quora</id>
     <content type="html"><![CDATA[<p>DMPの仕組みについてはだいたい妄想と気合で補完できるようになってきたのでだいたい一段落してきましたが、一方でビジネスモデルについては依然としてはっきりしていません。なので、深夜のテンションにまかせてQuoraを漁りまくったところ、色々と情報が見つかったのでまとめてみます。</p>
 
 <h2>DMPってそもそもなによ？的な質問</h2>
@@ -343,9 +343,9 @@
   
   <entry>
     <title type="html"><![CDATA[データビジネスの今後について考えてみた]]></title>
-    <link href="http://rindai87.github.com/blog/2013/04/04/new-dmp-system/"/>
+    <link href="http://rindai87.github.io/blog/2013/04/04/new-dmp-system/"/>
     <updated>2013-04-04T02:41:00+09:00</updated>
-    <id>http://rindai87.github.com/blog/2013/04/04/new-dmp-system</id>
+    <id>http://rindai87.github.io/blog/2013/04/04/new-dmp-system</id>
     <content type="html"><![CDATA[<p>4月に入ってから各社がDMPに関係するプレスリリースラッシュとなっていて、個人的には一気にDMPを始めとするデジタルマーケティング業界が盛り上がってきている感じがあります。</p>
 
 <ul>
