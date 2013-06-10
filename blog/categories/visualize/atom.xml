@@ -4,7 +4,7 @@
   <title><![CDATA[Category: visualize | adtech周辺に興味がある人の四方山話]]></title>
   <link href="http://rindai87.github.io/blog/categories/visualize/atom.xml" rel="self"/>
   <link href="http://rindai87.github.io/"/>
-  <updated>2013-06-10T12:16:10+09:00</updated>
+  <updated>2013-06-10T12:36:21+09:00</updated>
   <id>http://rindai87.github.io/</id>
   <author>
     <name><![CDATA[Norihiro Shimoda]]></name>
@@ -95,8 +95,9 @@ Javascriptを使ったグラフの描画ツールでは<a href="http://d3js.org/
 &lt;/html&gt;</code></pre></noscript></div>
 </p>
 
-<script src="https://gist.github.com/rindai87/5746112.js"></script>
+<p>こんな感じのグラフができます。</p>
 
+<p><img src="/images/google_charts/line_chart_sample.png"></p>
 
 <h2>chart.draw()とChartWrapper</h2>
 
@@ -192,6 +193,10 @@ Javascriptを使ったグラフの描画ツールでは<a href="http://d3js.org/
 </code></pre></noscript></div>
 </p>
 
+<p>こんな感じの表ができます。</p>
+
+<p><img src="/images/google_charts/table_sample.png"></p>
+
 <h2>インタラクティブなグラフを作る</h2>
 
 <p>グラフに対してイベントが発生した時のアクションを予め登録しておいてあげるとことで、インタラクティブなグラフを実現することができます。イベントとしては下記のものがあります。</p>
@@ -267,6 +272,8 @@ Javascriptを使ったグラフの描画ツールでは<a href="http://d3js.org/
 
 &lt;/html&gt;</code></pre></noscript></div>
 </p>
+
+<p><img src="/images/google_charts/line_chart_sample2.png"></p>
 
 <p>この例だとそこまで面白くありませんが、うまくイベントを扱うことで、表やチャートに対してフィルタリングを行うことができるようになります。</p>
 
