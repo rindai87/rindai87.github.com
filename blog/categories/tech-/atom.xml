@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tech, | adtech周辺に興味がある人の四方山話]]></title>
   <link href="http://rindai87.github.io/blog/categories/tech-/atom.xml" rel="self"/>
   <link href="http://rindai87.github.io/"/>
-  <updated>2013-06-10T12:14:37+09:00</updated>
+  <updated>2013-06-10T12:16:10+09:00</updated>
   <id>http://rindai87.github.io/</id>
   <author>
     <name><![CDATA[Norihiro Shimoda]]></name>
@@ -33,11 +33,15 @@ Javascriptを使ったグラフの描画ツールでは<a href="http://d3js.org/
 
 <h2>基本的な使い方</h2>
 
-<p>ざっくりと以下の流れで実現出来ます。
-* Google JSAPIをロード
-* グラフ生成に必要なパッケージを読み込み
-* データを用意
-* グラフを描画</p>
+<p>ざっくりと以下の流れで実現出来ます。</p>
+
+<ul>
+<li>Google JSAPIをロード</li>
+<li>グラフ生成に必要なパッケージを読み込み</li>
+<li>データを用意</li>
+<li>グラフを描画</li>
+</ul>
+
 
 <p><div><script src='https://gist.github.com/5746112.js?file=line_chart_sample.html'></script>
 <noscript><pre><code>&lt;!DOCTYPE html&gt;
@@ -289,7 +293,7 @@ Google Chartsでは今回紹介した以上のことが、色々とできます�
 </ul>
 
 
-<p>3</p>
+<p>3つ目のリンクが非常にわかりやすいので、本家のドキュメントを見る前にさらっと目を通して置くと理解が捗るかもしれません。</p>
 ]]></content>
   </entry>
   
