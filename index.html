@@ -9,7 +9,7 @@
   <meta name="author" content="Norihiro Shimoda">
 
   
-  <meta name="description" content="デジタルマーケティングに興味があるとか言っている以上、マーケティングの勉強もしないとね、ということで手始めに一冊読んでみました。前職の上司から、とりあえずこれは一回読んどけ、と言われて購入し早3年、ようやく読了しました（遅 売れるもマーケ 当たるもマーケ―マーケティング22の法則アル ライズ &hellip;">
+  <meta name="description" content="可視化ブームですし、色々とWeb上のダッシュボード的なものに情報を可視化して行きたい今日このごろ。最近は色々と選択肢もありますが、個人がまず可視化してみたいな的なノリの時にはGoogle Chartsがぴったりだと思います。 Google Charts Googleが提供するツールの一つで、 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,315 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/10/introduction-of-google-charts/">Google Charts入門</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-10T12:07:00+09:00" pubdate data-updated="true">Jun 10<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>可視化ブームですし、色々とWeb上のダッシュボード的なものに情報を可視化して行きたい今日このごろ。最近は色々と選択肢もありますが、個人がまず可視化してみたいな的なノリの時にはGoogle Chartsがぴったりだと思います。</p>
+
+<h1>Google Charts</h1>
+
+<p><a href="https://developers.google.com/chart/">Googleが提供するツールの一つ</a>で、Javascriptを使ってSVGでグラフを記述できるようになります。
+Javascriptを使ったグラフの描画ツールでは<a href="http://d3js.org/">d3.js</a>なんかも有名ですが、d3.jsは一度触ってみたら分かる通り、柔軟に相当綺麗なグラフを書くことはできるのですが、その反面、それっぽいグラフを書くまでがけっこう大変です。
+その点、Google Chartsは割りと楽にグラフを書くことができるので、ライセンスが許す範囲とGoogleが今後もこのAPIを提供してくれるという前提ですが、気軽にWebで見れるグラフを書きたい時はこっちを選択するといいかもしれません。</p>
+
+<p><a href="https://developers.google.com/chart/interactive/docs/gallery">Charts Gallary</a>にあるように、かけるといいな、というグラフはだいたい揃っています。
+以下では、ざっくりとGoogle Chartsの使い方などを書いてみます。</p>
+
+<h1>基本編</h1>
+
+<h2>基本的な使い方</h2>
+
+<p>ざっくりと以下の流れで実現出来ます。
+* Google JSAPIをロード
+* グラフ生成に必要なパッケージを読み込み
+* データを用意
+* グラフを描画</p>
+
+<div><script src='https://gist.github.com/5746112.js?file=line_chart_sample.html'></script>
+<noscript><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ja&quot;&gt;
+
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;Sample of LineChart&lt;/title&gt;
+&lt;!-- Google JSAPIをロード --&gt;
+&lt;script src=&quot;https://www.google.com/jsapi&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+    // グラフ生成に必要なパッケージを読み込み
+    google.load('visualization', '1.0', {'packages':['corechart']});
+
+    // グラフ描画のためのコールバック関数をセット
+    google.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        // データを用意
+        // データテーブルという表のようなデータ構造
+        var data = new google.visualization.DataTable();
+        // カラムとして日付と体重
+        data.addColumn('string', '日付');
+        data.addColumn('number', '体重');
+        // 実際に各行のデータを用意
+        data.addRows([
+            ['6/1', 65.4],
+            ['6/2', 65.5],
+            ['6/3', 65.1],
+            ['6/4', 65.0],
+            ['6/5', 65.2]
+        ]);
+        // グラフのオプションを記述（タイトルと幅と高さ）
+        var options = {'title':'体重の記録',
+                       'width':400,
+                       'height':300};
+        // グラフの描画
+        var chart = new google.visualization.LineChart(document.getElementById('chart'));
+        chart.draw(data, options);
+
+    }
+
+&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div id=&quot;chart&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></noscript></div>
+
+
+
+
+<script src="https://gist.github.com/rindai87/5746112.js"></script>
+
+
+<h2>chart.draw()とChartWrapper</h2>
+
+<p>chart.draw()はコールバック関数を自分で定義してあげる必要があったりと少し手間がかかります。これに対して<a href="https://developers.google.com/chart/interactive/docs/reference#chartwrapperobject">ChartWrapper</a>はそういった煩雑な定義をまるっと請け負ってくれるので、少しだけ楽になります。が、まあ好みの問題ですし、実際に細々としたことをやりたくなると、やっぱりchart.draw()に戻って来る気がします。chart.draw()とChartWrapperの比較を以下に載せます。</p>
+
+<div><script src='https://gist.github.com/5746112.js?file=line_chart_sample2.html'></script>
+<noscript><pre><code>&lt;!DOCTYPE html&gt;                                                                                                       
+&lt;html lang=&quot;ja&quot;&gt;                                                                                                      
+                                                                                                                      
+&lt;head&gt;                                                                                                                
+&lt;meta charset=&quot;UTF-8&quot;&gt;                                                                                                
+&lt;title&gt;Sample of LineChart&lt;/title&gt;                                                                                    
+&lt;script src=&quot;https://www.google.com/jsapi&quot;&gt;&lt;/script&gt;                                                                  
+                                                                                                                      
+&lt;script&gt;                                                                                                              
+    google.load('visualization', '1.0');
+    google.setOnLoadCallback(drawChart);                                                                              
+
+    function drawChart() {                                                                                            
+        // Chart Wrapperというクラスを使って書くこともできる                                                          
+        var wrapper = new google.visualization.ChartWrapper({                                                         
+            chartType:'LineChart',
+            dataTable:[['日付', '体重'],
+                       ['6/1', 65.4],                                                                                 
+                       ['6/2', 65.5],                                                                                 
+                       ['6/3', 65.1],                                                                                 
+                       ['6/4', 65.0],                                                                                 
+                       ['6/5', 65.2]],                                                                                
+            options:{'title':'体重の記録',                                                                            
+                     'width':600,                                                                                     
+                     'height':400},                                                                                   
+            containerId:'chart'
+        });
+        wrapper.draw();
+    }
+&lt;/script&gt;
+
+&lt;/head&gt;                                                                                                               
+
+&lt;body&gt;                                                                                                                
+    &lt;div id=&quot;chart&quot;&gt;&lt;/div&gt;                                                                                            
+&lt;/body&gt;                                                                                                               
+                                                                                                                      
+&lt;/html&gt;                                     </code></pre></noscript></div>
+
+
+<h2>表を作る</h2>
+
+<p>表も簡単に作れます。グラフを書く時に使ったDataTableをそのまま流用することができるので大変便利です。
+しかも、何が楽かって、チャートと同じく、デフォルトで書いたグラフには、最初からソート機能も実現されていることです。各カラムをクリックしてもられれば行全体がカラムに連動して昇順・降順にソートされることが確認できると思います。</p>
+
+<div><script src='https://gist.github.com/5746112.js?file=table_sample.html'></script>
+<noscript><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ja&quot;&gt;
+
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;Sample of Table&lt;/title&gt;
+&lt;script src=&quot;https://www.google.com/jsapi&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+    // 表なのでcorechartではなくtableパッケージを読み込む
+    google.load('visualization', '1.0', {'packages':['table']});
+    // 描画用のコールバック関数を定義
+    google.setOnLoadCallback(drawTable);
+
+    function drawTable() {
+        // データの用意
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', '名前');
+        data.addColumn('number', '年齢');
+        data.addColumn('boolean', '20歳以上かどうか');
+        data.addRows([
+            ['鈴木', 25, true],
+            ['佐藤', 30, true],
+            ['吉田', 18, false]
+        ]);
+
+        // 表の描画
+        var table = new google.visualization.Table(document.getElementById('table_view'));
+        // 行番号を表示するオプションを付けている
+        table.draw(data, {showRowNumber:true});
+    }
+&lt;/script&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div id=&quot;table_view&quot; style=&quot;width:400px; heigth:250px;&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre></noscript></div>
+
+
+<h2>インタラクティブなグラフを作る</h2>
+
+<p>グラフに対してイベントが発生した時のアクションを予め登録しておいてあげるとことで、インタラクティブなグラフを実現することができます。イベントとしては下記のものがあります。</p>
+
+<h3>イベント</h3>
+
+<ul>
+<li>ready：チャートが描画された時</li>
+<li>select：チャートの要素が選択された時</li>
+<li>error：チャートの描画がエラーになった時</li>
+<li>onmousover：マウスオーバー時</li>
+<li>onmouseout：マウスを話した時</li>
+</ul>
+
+
+<p>今回はシンプルな例として、グラフの要素をクリックする(select)すると、その値がalertで表示される、というものを用意してみました。</p>
+
+<div><script src='https://gist.github.com/5746112.js?file=line_chart_sample3.html'></script>
+<noscript><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ja&quot;&gt;
+
+&lt;head&gt;                                                                                                                
+&lt;meta charset=&quot;UTF-8&quot;&gt;                                                                                                
+&lt;title&gt;Sample of LineChart&lt;/title&gt;                                                                                    
+&lt;script src=&quot;https://www.google.com/jsapi&quot;&gt;&lt;/script&gt;                                                                  
+                                                                                                                      
+&lt;script&gt;                                                                                                              
+    // これまでと同じようにグラフを描画していく
+    google.load('visualization', '1.0', {'packages':['corechart']});                                                  
+
+    google.setOnLoadCallback(drawChart);                                                                              
+   
+    function drawChart() {
+        var data = new google.visualization.DataTable();                                                              
+        data.addColumn('string', '日付');
+        data.addColumn('number', '体重');                                                                             
+        data.addRows([
+            ['6/1', 65.4],                                                                                            
+            ['6/2', 65.5],                                                                                            
+            ['6/3', 65.1],
+            ['6/4', 65.0],
+            ['6/5', 65.2]                                                                                             
+        ]);                                                                                                           
+       
+        var options = {'title':'体重の記録',                                                                          
+                       'width':400,
+                       'height':300};                                                                                 
+        
+        var chart = new google.visualization.LineChart(document.getElementById('chart'));                             
+
+        // イベント発生時の挙動を定義
+        function selectHandler() {                                                                                    
+            var selectedItem = chart.getSelection()[0];
+            if (selectedItem) {
+                var selectedDate = data.getValue(selectedItem.row, 0);                                                
+                var weight = data.getValue(selectedItem.row, 1);                                                      
+                alert(selectedDate + &quot;の体重は&quot; + weight + &quot;kgでした。&quot;);                                             
+            }
+        }
+        // チャートにイベントを登録                                                                                   
+        google.visualization.events.addListener(chart, 'select', selectHandler);                                      
+        // グラフの描画                                                                                               
+        chart.draw(data, options);                                                                                    
+                                                                                                                      
+    }
+                                                                                                                      
+&lt;/script&gt;                                                                                                             
+&lt;/head&gt;
+
+&lt;body&gt;                                                                                                                
+    &lt;div id=&quot;chart&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></noscript></div>
+
+
+<p>この例だとそこまで面白くありませんが、うまくイベントを扱うことで、表やチャートに対してフィルタリングを行うことができるようになります。</p>
+
+<h2>まとめ</h2>
+
+<p>今回は便利そうなGoogle Chartsの基礎の基礎的な話をまとめてみました。
+Google Chartsでは今回紹介した以上のことが、色々とできます。自分が便利だなぁと思っている機能を簡単に紹介すると、</p>
+
+<ul>
+<li>グラフと表の連携</li>
+<li>イベントを利用したフィルタリング機能の実装</li>
+<li>Google SpreadSheetとの連携</li>
+</ul>
+
+
+<p>などです。JSON等でデータを用意するのは結構大変だったりするので、スプレッドシートとの連携はかなり大きいのではと思っています。余力があれば、いつか紹介する&#8230;かも&#8230;しれません。</p>
+
+<h2>参考</h2>
+
+<ul>
+<li><a href="https://google-developers.appspot.com/chart/">Google Chartの本家</a></li>
+<li><a href="http://dotinstall.com/lessons/basic_chart_tools">ドットインストールのGoogle Chart Tools入門</a></li>
+<li><a href="http://yohshiy.blog.fc2.com/blog-category-24.html">Google Chart Tools の使い方</a></li>
+</ul>
+
+
+<p>3</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1058,140 +1367,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/06/go-to-jotsugakkai-study/">情報知財研究会に行ってきた話</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-06T02:32:00+09:00" pubdate data-updated="true">Dec 6<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>何をきっかけに存在を知ったか記憶は定かではないですが、最近の興味関心とばっちりあっている情報通信学会主催の<a href="http://www.jotsugakkai.or.jp/operation/study/chizai.html">2012年度　第6回情報知財研究会</a>に参加してきました。
-大変勉強になったんですが、すんごい眠いし書くのやめようかと思ったけれど、今日書かないと永遠に書かない気がするので、自分への備忘録ということで書き残しておきます。</p>
-
-<p>全体の流れというよりも、自分が勉強になったな、と思った部分をピックアップしてのメモ。なにぶん全然詳しくない分野なので、内容についての正確性は若干あやしいです。</p>
-
-<h2>個人情報についての誤解</h2>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>「個人情報保護法」で言うところの「個人情報」とは、特定個人の識別情報であり、プライバシー情報とは異なる。</span></code></pre></td></tr></table></div></figure>
-
-
-<p>まずはこのレベルの認識が曖昧でした。</p>
-
-<p>個人は識別できないが、私生活上の情報や、非公開/公開を望まない情報などがプライバシー情報だということです。PIIくらいの純度の高い個人情報に紐付くIDくらいじゃないと、現行法では個人情報にならないんじゃないかなぁと思って聞いていました。</p>
-
-<p>とはいえ、昨今のO2Oの流れなどがあり、オフラインのPII情報が紐付いて、単にWeb上の情報だけで流通・収集されている段階では個人情報まで行かなくても、オフライン情報（決済情報や住所など）が紐付くことで個人情報になりうる可能性は高そうです。そして、このことをre-identificaitonと表現されていました。</p>
-
-<h2>3つの規制</h2>
-
-<p>個人情報に関する規制には3つの規制があるそうです。</p>
-
-<ul>
-<li>刑事規制</li>
-<li>民事規制</li>
-<li>行政規制</li>
-</ul>
-
-
-<p>刑事規制は秘密漏洩罪、民事規制はプライバシー侵害、行政規制は個人情報保護、という観点での規制となっており、上の方が法的な罪としては重くなっています。</p>
-
-<p>行政規制は、話を聞く限り「注意」、悪くても「罰金」レベルなので、基本的には怒られたら辞める、というスタンスが通用してしまいそうです。</p>
-
-<p>ターゲティング広告やDMPまわりの話なんかはモロにこのあたりの規制対象になりそうですが、実際に広告やマーケティング情報が刑事罰にあたるレベルの情報を扱うことは考えにくいですよね。
-民事規制レベルだと、個人が不快に思いそれを訴え出る、というケースがありますが、ターゲティング広告に追いかけまくられたりやDMで狙い撃ちにされて不快に思う人もいますが、よっぱどひどいことにならない限り、なかなか訴えるという手段には出なさそうですし、実情は行政規制のレベルでしか縛りはないのではないかなぁと思いました。</p>
-
-<h2>情報の流通に関する個人情報保護法の規制</h2>
-
-<p>個人的に今回一番勉強になったな、という部分です。個人を特定可能な情報を持っている企業が、そのデータを第三者に提供するにあたって、個人を特定できない形で渡すことが個人情報保護法の適用範囲かどうかという○☓表が出てきて、それが非常にわかり易かったので再現してみました。</p>
-
-<p><img src="/images/20121205/privacy.png"></p>
-
-<ul>
-<li>1番目は明らかにアウト</li>
-<li>2番目はCookie情報の提供などがあたりそうですね</li>
-<li>3番目がre-identificationに相当する、個人を特定不可能な識別情報が、提供先で他の情報源と組み合わることで個人を特定可能な識別情報になってしまうパターンです。現行法は、こういったことを規制できないようです。</li>
-<li>4番目の識別可能情報を識別不可能な状態で提供することは、現在のところ専門家の間でも意見が分かれるところのようです。</li>
-</ul>
-
-
-<p>やはり気になるのは3番目と4番目の部分で、3番目が感覚的にはグレーなのに大丈夫、というパターンです。
-4番目は、一見するとNGにすると厳しくなって産業界的にはよろしくないという印象にもなるけれど、仮にここをOKとしてしまうと、匿名化したデータの漏洩が起こった際に、行政処分の適用範囲としにくくなり、実態の調査などに踏み込めないケースが出てくるとのこと。
-積極的にグレーやブラックな方法を選ぶ企業だけが得をしないためにも、一見締め付けに見える規制も必要なんだな、と思いました。</p>
-
-<h2>米国、EU、日本の比較</h2>
-
-<ul>
-<li>米国は個別規制、プライバシー情報を考慮</li>
-<li>EUは包括規制、センシティブ情報を考慮</li>
-<li>日本は包括規制、特定個人の識別情報のみ考慮</li>
-</ul>
-
-
-<p>日本は重箱の隅を突っつくように特定個人の識別情報のみに注力してしまい、特にWebの時代では特定個人の識別情報以外にも、UUID、電話番号、ポイントカードのIDなど、特定個人の識別情報ではなくとも取得することで多大な利益を得ることのできる識別情報が多く存在するため、実態とかけ離れた法規制になっているような印象を受けました。</p>
-
-<h2>プライバシーインパクト</h2>
-
-<p>上で書いてきたことと繋がりますが、結局はこれだな、と。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>特定個人を識別できない情報であってもプライバシーの権利を侵害しうることに留意すべき</span></code></pre></td></tr></table></div></figure>
-
-
-<p>プライバシーの権利に与える影響を常に意識することが大事だということですね。</p>
-
-<h2>まとめ的なものなど</h2>
-
-<p>今日の話を聞いて、CCCの問題やトラッキングの問題などに関してなんとなく見えてきたこととしては、感情論と法規制と技術的な部分が混ざり合って「なんかやばそう」感が先行しているんじゃないかなぁと思いました。</p>
-
-<ul>
-<li>法規制としては、そもそもユーザーに同意をとった範囲で色々やるのはOK</li>
-<li>でも、それがユーザーが真意で同意したかは不明なので、法規制という点と民事的な観点（感情的な部分）はまた別。キモいと思う人にはキモいものだし、コワいと思う人にはコワいもの</li>
-<li>さらに法規制の範囲で何かやるにしても、そもそも暗号化などの基本的なセキュリティ要件は満たす必要がある</li>
-</ul>
-
-
-<p>なので、</p>
-
-<ul>
-<li>ユーザーには、同意することでどうなるかはっきりと分かるようにする</li>
-<li>ユーザーの意思で、いつでもデータの収集等を終わらすことができるようにする</li>
-<li>平文でデータ送ったりしないとか、基本的なセキュリティ要件はクリアするように心がける。また、セキュリティに配慮していることをユーザーにはっきりと分かるようにする</li>
-</ul>
-
-
-<p>ということが大事なんじゃないかなと思います。なので、ちゃんと（この辺が微妙なニュアンスになりますが）やれば、DMPやターゲティング広告/O2Oもそこまで問題となるものではない気がしました。現在先行してプロダクトなりサービスをリリースしているところが割とアグレッシブな感じなので、ネガティブな印象がどうしても先にきてしまっている。ここは何とかしたいところですね。</p>
-
-<h2>その他</h2>
-
-<p>pマークの話や、privacy by designの時代、個人情報保護法2000個問題など盛り沢山で大変勉強になった会でした。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1207,6 +1382,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/10/introduction-of-google-charts/">Google Charts入門</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/06/01/reading-the-book-22rules-of-marketing/">「マーケティング22の法則」読了</a>
       </li>
     
@@ -1220,10 +1399,6 @@
     
       <li class="post">
         <a href="/blog/2013/05/14/pythonz-and-virtualenv/">PythonzとVirtualenvでPythonの環境を作る</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/07/adtech-study/">第1回渋谷アドテク勉強会を開催します</a>
       </li>
     
   </ul>

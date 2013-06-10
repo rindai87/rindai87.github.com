@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: visualize | adtech周辺に興味がある人の四方山話]]></title>
+  <link href="http://rindai87.github.io/blog/categories/visualize/atom.xml" rel="self"/>
+  <link href="http://rindai87.github.io/"/>
+  <updated>2013-06-10T12:14:37+09:00</updated>
+  <id>http://rindai87.github.io/</id>
+  <author>
+    <name><![CDATA[Norihiro Shimoda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Google Charts入門]]></title>
+    <link href="http://rindai87.github.io/blog/2013/06/10/introduction-of-google-charts/"/>
+    <updated>2013-06-10T12:07:00+09:00</updated>
+    <id>http://rindai87.github.io/blog/2013/06/10/introduction-of-google-charts</id>
+    <content type="html"><![CDATA[<p>可視化ブームですし、色々とWeb上のダッシュボード的なものに情報を可視化して行きたい今日このごろ。最近は色々と選択肢もありますが、個人がまず可視化してみたいな的なノリの時にはGoogle Chartsがぴったりだと思います。</p>
+
+<h1>Google Charts</h1>
+
+<p><a href="https://developers.google.com/chart/">Googleが提供するツールの一つ</a>で、Javascriptを使ってSVGでグラフを記述できるようになります。
+Javascriptを使ったグラフの描画ツールでは<a href="http://d3js.org/">d3.js</a>なんかも有名ですが、d3.jsは一度触ってみたら分かる通り、柔軟に相当綺麗なグラフを書くことはできるのですが、その反面、それっぽいグラフを書くまでがけっこう大変です。
+その点、Google Chartsは割りと楽にグラフを書くことができるので、ライセンスが許す範囲とGoogleが今後もこのAPIを提供してくれるという前提ですが、気軽にWebで見れるグラフを書きたい時はこっちを選択するといいかもしれません。</p>
+
+<p><a href="https://developers.google.com/chart/interactive/docs/gallery">Charts Gallary</a>にあるように、かけるといいな、というグラフはだいたい揃っています。
+以下では、ざっくりとGoogle Chartsの使い方などを書いてみます。</p>
+
+<h1>基本編</h1>
+
+<h2>基本的な使い方</h2>
+
+<p>ざっくりと以下の流れで実現出来ます。
+* Google JSAPIをロード
+* グラフ生成に必要なパッケージを読み込み
+* データを用意
+* グラフを描画</p>
+
+<p><div><script src='https://gist.github.com/5746112.js?file=line_chart_sample.html'></script>
+<noscript><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ja&quot;&gt;
+
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;Sample of LineChart&lt;/title&gt;
+&lt;!-- Google JSAPIをロード --&gt;
+&lt;script src=&quot;https://www.google.com/jsapi&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+    // グラフ生成に必要なパッケージを読み込み
+    google.load('visualization', '1.0', {'packages':['corechart']});
+
+    // グラフ描画のためのコールバック関数をセット
+    google.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        // データを用意
+        // データテーブルという表のようなデータ構造
+        var data = new google.visualization.DataTable();
+        // カラムとして日付と体重
+        data.addColumn('string', '日付');
+        data.addColumn('number', '体重');
+        // 実際に各行のデータを用意
+        data.addRows([
+            ['6/1', 65.4],
+            ['6/2', 65.5],
+            ['6/3', 65.1],
+            ['6/4', 65.0],
+            ['6/5', 65.2]
+        ]);
+        // グラフのオプションを記述（タイトルと幅と高さ）
+        var options = {'title':'体重の記録',
+                       'width':400,
+                       'height':300};
+        // グラフの描画
+        var chart = new google.visualization.LineChart(document.getElementById('chart'));
+        chart.draw(data, options);
+
+    }
+
+&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div id=&quot;chart&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></noscript></div>
+</p>
+
+<script src="https://gist.github.com/rindai87/5746112.js"></script>
+
+
+<h2>chart.draw()とChartWrapper</h2>
+
+<p>chart.draw()はコールバック関数を自分で定義してあげる必要があったりと少し手間がかかります。これに対して<a href="https://developers.google.com/chart/interactive/docs/reference#chartwrapperobject">ChartWrapper</a>はそういった煩雑な定義をまるっと請け負ってくれるので、少しだけ楽になります。が、まあ好みの問題ですし、実際に細々としたことをやりたくなると、やっぱりchart.draw()に戻って来る気がします。chart.draw()とChartWrapperの比較を以下に載せます。</p>
+
+<p><div><script src='https://gist.github.com/5746112.js?file=line_chart_sample2.html'></script>
+<noscript><pre><code>&lt;!DOCTYPE html&gt;                                                                                                       
+&lt;html lang=&quot;ja&quot;&gt;                                                                                                      
+                                                                                                                      
+&lt;head&gt;                                                                                                                
+&lt;meta charset=&quot;UTF-8&quot;&gt;                                                                                                
+&lt;title&gt;Sample of LineChart&lt;/title&gt;                                                                                    
+&lt;script src=&quot;https://www.google.com/jsapi&quot;&gt;&lt;/script&gt;                                                                  
+                                                                                                                      
+&lt;script&gt;                                                                                                              
+    google.load('visualization', '1.0');
+    google.setOnLoadCallback(drawChart);                                                                              
+
+    function drawChart() {                                                                                            
+        // Chart Wrapperというクラスを使って書くこともできる                                                          
+        var wrapper = new google.visualization.ChartWrapper({                                                         
+            chartType:'LineChart',
+            dataTable:[['日付', '体重'],
+                       ['6/1', 65.4],                                                                                 
+                       ['6/2', 65.5],                                                                                 
+                       ['6/3', 65.1],                                                                                 
+                       ['6/4', 65.0],                                                                                 
+                       ['6/5', 65.2]],                                                                                
+            options:{'title':'体重の記録',                                                                            
+                     'width':600,                                                                                     
+                     'height':400},                                                                                   
+            containerId:'chart'
+        });
+        wrapper.draw();
+    }
+&lt;/script&gt;
+
+&lt;/head&gt;                                                                                                               
+
+&lt;body&gt;                                                                                                                
+    &lt;div id=&quot;chart&quot;&gt;&lt;/div&gt;                                                                                            
+&lt;/body&gt;                                                                                                               
+                                                                                                                      
+&lt;/html&gt;                                     </code></pre></noscript></div>
+</p>
+
+<h2>表を作る</h2>
+
+<p>表も簡単に作れます。グラフを書く時に使ったDataTableをそのまま流用することができるので大変便利です。
+しかも、何が楽かって、チャートと同じく、デフォルトで書いたグラフには、最初からソート機能も実現されていることです。各カラムをクリックしてもられれば行全体がカラムに連動して昇順・降順にソートされることが確認できると思います。</p>
+
+<p><div><script src='https://gist.github.com/5746112.js?file=table_sample.html'></script>
+<noscript><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ja&quot;&gt;
+
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;Sample of Table&lt;/title&gt;
+&lt;script src=&quot;https://www.google.com/jsapi&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+    // 表なのでcorechartではなくtableパッケージを読み込む
+    google.load('visualization', '1.0', {'packages':['table']});
+    // 描画用のコールバック関数を定義
+    google.setOnLoadCallback(drawTable);
+
+    function drawTable() {
+        // データの用意
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', '名前');
+        data.addColumn('number', '年齢');
+        data.addColumn('boolean', '20歳以上かどうか');
+        data.addRows([
+            ['鈴木', 25, true],
+            ['佐藤', 30, true],
+            ['吉田', 18, false]
+        ]);
+
+        // 表の描画
+        var table = new google.visualization.Table(document.getElementById('table_view'));
+        // 行番号を表示するオプションを付けている
+        table.draw(data, {showRowNumber:true});
+    }
+&lt;/script&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div id=&quot;table_view&quot; style=&quot;width:400px; heigth:250px;&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre></noscript></div>
+</p>
+
+<h2>インタラクティブなグラフを作る</h2>
+
+<p>グラフに対してイベントが発生した時のアクションを予め登録しておいてあげるとことで、インタラクティブなグラフを実現することができます。イベントとしては下記のものがあります。</p>
+
+<h3>イベント</h3>
+
+<ul>
+<li>ready：チャートが描画された時</li>
+<li>select：チャートの要素が選択された時</li>
+<li>error：チャートの描画がエラーになった時</li>
+<li>onmousover：マウスオーバー時</li>
+<li>onmouseout：マウスを話した時</li>
+</ul>
+
+
+<p>今回はシンプルな例として、グラフの要素をクリックする(select)すると、その値がalertで表示される、というものを用意してみました。</p>
+
+<p><div><script src='https://gist.github.com/5746112.js?file=line_chart_sample3.html'></script>
+<noscript><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ja&quot;&gt;
+
+&lt;head&gt;                                                                                                                
+&lt;meta charset=&quot;UTF-8&quot;&gt;                                                                                                
+&lt;title&gt;Sample of LineChart&lt;/title&gt;                                                                                    
+&lt;script src=&quot;https://www.google.com/jsapi&quot;&gt;&lt;/script&gt;                                                                  
+                                                                                                                      
+&lt;script&gt;                                                                                                              
+    // これまでと同じようにグラフを描画していく
+    google.load('visualization', '1.0', {'packages':['corechart']});                                                  
+
+    google.setOnLoadCallback(drawChart);                                                                              
+   
+    function drawChart() {
+        var data = new google.visualization.DataTable();                                                              
+        data.addColumn('string', '日付');
+        data.addColumn('number', '体重');                                                                             
+        data.addRows([
+            ['6/1', 65.4],                                                                                            
+            ['6/2', 65.5],                                                                                            
+            ['6/3', 65.1],
+            ['6/4', 65.0],
+            ['6/5', 65.2]                                                                                             
+        ]);                                                                                                           
+       
+        var options = {'title':'体重の記録',                                                                          
+                       'width':400,
+                       'height':300};                                                                                 
+        
+        var chart = new google.visualization.LineChart(document.getElementById('chart'));                             
+
+        // イベント発生時の挙動を定義
+        function selectHandler() {                                                                                    
+            var selectedItem = chart.getSelection()[0];
+            if (selectedItem) {
+                var selectedDate = data.getValue(selectedItem.row, 0);                                                
+                var weight = data.getValue(selectedItem.row, 1);                                                      
+                alert(selectedDate + &quot;の体重は&quot; + weight + &quot;kgでした。&quot;);                                             
+            }
+        }
+        // チャートにイベントを登録                                                                                   
+        google.visualization.events.addListener(chart, 'select', selectHandler);                                      
+        // グラフの描画                                                                                               
+        chart.draw(data, options);                                                                                    
+                                                                                                                      
+    }
+                                                                                                                      
+&lt;/script&gt;                                                                                                             
+&lt;/head&gt;
+
+&lt;body&gt;                                                                                                                
+    &lt;div id=&quot;chart&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre></noscript></div>
+</p>
+
+<p>この例だとそこまで面白くありませんが、うまくイベントを扱うことで、表やチャートに対してフィルタリングを行うことができるようになります。</p>
+
+<h2>まとめ</h2>
+
+<p>今回は便利そうなGoogle Chartsの基礎の基礎的な話をまとめてみました。
+Google Chartsでは今回紹介した以上のことが、色々とできます。自分が便利だなぁと思っている機能を簡単に紹介すると、</p>
+
+<ul>
+<li>グラフと表の連携</li>
+<li>イベントを利用したフィルタリング機能の実装</li>
+<li>Google SpreadSheetとの連携</li>
+</ul>
+
+
+<p>などです。JSON等でデータを用意するのは結構大変だったりするので、スプレッドシートとの連携はかなり大きいのではと思っています。余力があれば、いつか紹介する...かも...しれません。</p>
+
+<h2>参考</h2>
+
+<ul>
+<li><a href="https://google-developers.appspot.com/chart/">Google Chartの本家</a></li>
+<li><a href="http://dotinstall.com/lessons/basic_chart_tools">ドットインストールのGoogle Chart Tools入門</a></li>
+<li><a href="http://yohshiy.blog.fc2.com/blog-category-24.html">Google Chart Tools の使い方</a></li>
+</ul>
+
+
+<p>3</p>
+]]></content>
+  </entry>
+  
+</feed>
