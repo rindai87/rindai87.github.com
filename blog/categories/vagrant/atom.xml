@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: vagrant | adtech周辺に興味がある人の四方山話]]></title>
+  <link href="http://rindai87.github.io/blog/categories/vagrant/atom.xml" rel="self"/>
+  <link href="http://rindai87.github.io/"/>
+  <updated>2013-07-27T23:18:05+09:00</updated>
+  <id>http://rindai87.github.io/</id>
+  <author>
+    <name><![CDATA[Norihiro Shimoda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Vagrant導入メモ]]></title>
+    <link href="http://rindai87.github.io/blog/2013/07/27/introduction-of-vagrant/"/>
+    <updated>2013-07-27T23:15:00+09:00</updated>
+    <id>http://rindai87.github.io/blog/2013/07/27/introduction-of-vagrant</id>
+    <content type="html"><![CDATA[<p>ほぼ自分向けのメモです。作って壊してを簡単にできる仮想環境は大変便利デスヨネー</p>
+
+<h3>VagrantとVirtualBox</h3>
+
+<ul>
+<li><a href="http://www.vagrantup.com/">Vagrant</a></li>
+<li><a href="https://www.virtualbox.org/">VirtualBox</a></li>
+</ul>
+
+
+<h3>VirtualBoxのインストール</h3>
+
+<p>インストーラ持ってきて入れる。それだけ。</p>
+
+<h3>Vagrantのインストール</h3>
+
+<p>インストーラ持ってきて入れてもいいけど、gemでもインストールできるらしいのでそちらで。
+<code>
+$ gem install vagrant
+</code>
+後述しますが、結局gemで入れたvagrantはアンインストールして公式からインストーラ使って入れなおしました。</p>
+
+<ul>
+<li><a href="http://www.vagrantbox.es/">box一覧</a></li>
+</ul>
+
+
+<h3>設定関係</h3>
+
+<ul>
+<li><p>boxをaddする
+<code>
+$ vagrant box add ${box_name} ${box_path or url}
+</code></p></li>
+<li><p>add済みのbox一覧確認
+<code>
+$ vagrant box list
+</code></p></li>
+<li><p>VM作る
+<code>
+$ mkdir ${vm_dir}
+$ cd ${vm_dir}
+$ vagrant init ${box_name}
+</code></p></li>
+</ul>
+
+
+<h3>共有ディレクトリ</h3>
+
+<p>VM側の/vagrantはホストOS側のvagrant initしたディレクトリと共有される。なので、共有される/vagrant以下に対して適当にシンボリックリンクを張ってやるとローカルでの作業が仮想マシン上に即座に反映されているので開発が捗る。ローカルからgit pushして、仮想マシン側でgit clone(pull)してもよい。</p>
+
+<h3>ある状態のboxを作る</h3>
+
+<ul>
+<li><p>既にある程度設定が済んだ状態の仮想マシンから新たにboxを作成する
+<code>
+$ cd ${vm_dir}
+$ vagrant package
+</code></p></li>
+<li><p>boxのリストに追加する
+<code>
+$ vagrant box add ${box_name}
+</code></p></li>
+</ul>
+
+
+<h3>sahara</h3>
+
+<p>仮想マシンをある時点に巻き戻せるプラグイン。作って壊してができるようになるので大変便利</p>
+
+<ul>
+<li><p>インストール
+```</p>
+
+<h1>vagrant plugin install sahara</h1>
+
+<p>```</p></li>
+<li><p>sandboxモードへ
+```</p>
+
+<h1>vagrant sahara on</h1>
+
+<p>```</p></li>
+<li><p>sandboxモードの開始時点へロールバック
+```</p>
+
+<h1>vagrant sahara rollback</h1>
+
+<p>```</p></li>
+<li><p>sandboxモード中の変更を確定
+```</p>
+
+<h1>vagrant sahara commit</h1>
+
+<p>```</p></li>
+<li><p>sandboxモードを終了
+```</p>
+
+<h1>vagrant sahara off</h1>
+
+<p>```</p></li>
+<li><p>sandboxかどうかの確認
+```</p>
+
+<h1>vagrant sahara status</h1>
+
+<p>```</p></li>
+</ul>
+
+
+<p>仮想マシン起動中は著しくcommitやoffの動作が遅くなるので、仮想マシンをhaltかsuspendした方が良さげ。</p>
+
+<h3>upgradeとか</h3>
+
+<p>ドットインストールでvagrant plugin などのsubcommandがないなぁとか思ってたらそもそもバージョンが違ったようだ。(自分は1.0.x系だった。) <a href="http://docs.vagrantup.com/v2/installation/backwards-compatibility.html">この辺</a>見ると後方互換性はあるみたいだけど、pluginの扱い方が少し違うようなので、1.0.xから1.x系に切り替える。自分はgemでインストールしたけど、<a href="http://docs.vagrantup.com/v2/installation/upgrading-from-1-0.html">この辺</a> 見て、gem uninstallしてdmgで入れた。</p>
+
+<h3>参考</h3>
+
+<p><a href="http://dotinstall.com/lessons/basic_vagrant">ドットインストール</a></p>
+]]></content>
+  </entry>
+  
+</feed>
