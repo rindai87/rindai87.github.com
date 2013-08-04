@@ -4,7 +4,7 @@
   <title><![CDATA[adtech周辺に興味がある人の四方山話]]></title>
   <link href="http://rindai87.github.io/atom.xml" rel="self"/>
   <link href="http://rindai87.github.io/"/>
-  <updated>2013-07-31T12:28:06+09:00</updated>
+  <updated>2013-08-04T23:55:03+09:00</updated>
   <id>http://rindai87.github.io/</id>
   <author>
     <name><![CDATA[Norihiro Shimoda]]></name>
@@ -12,6 +12,50 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[「ビッグデータ」と「データサイエンティスト」がタイトルに入ってる本を読んでみた話]]></title>
+    <link href="http://rindai87.github.io/blog/2013/08/04/datascientist-and-bigdata-books/"/>
+    <updated>2013-08-04T23:50:00+09:00</updated>
+    <id>http://rindai87.github.io/blog/2013/08/04/datascientist-and-bigdata-books</id>
+    <content type="html"><![CDATA[<p>ちょっと前まで少し時間があったので、自分も斜めに構えているだけでなく「ビッグデータ」「データサイエンティスト」に触れられている本を色々読んでみようと思ってボチボチとそれらしい本を読んでいました。</p>
+
+<hr />
+
+<h3>データサイエンティストに学ぶ「分析力」</h3>
+
+<table  border="0" cellpadding="5"><tr><td valign="top"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4822249476/rindai87-22/" target="_top"><img src="http://ecx.images-amazon.com/images/I/51vMdiePZBL._SL160_.jpg" border="0" alt="データ・サイエンティストに学ぶ「分析力」    ビッグデータからビジネス・チャンスをつかむ" /></a></td><td valign="top"><font size="-1"><a href="http://www.amazon.co.jp/%E3%83%87%E3%83%BC%E3%82%BF%E3%83%BB%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%83%86%E3%82%A3%E3%82%B9%E3%83%88%E3%81%AB%E5%AD%A6%E3%81%B6%E3%80%8C%E5%88%86%E6%9E%90%E5%8A%9B%E3%80%8D-%E3%83%93%E3%83%83%E3%82%B0%E3%83%87%E3%83%BC%E3%82%BF%E3%81%8B%E3%82%89%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9%E3%83%BB%E3%83%81%E3%83%A3%E3%83%B3%E3%82%B9%E3%82%92%E3%81%A4%E3%81%8B%E3%82%80-%E3%83%87%E3%82%A3%E3%83%9F%E3%83%88%E3%83%AA%E3%83%BB%E3%83%9E%E3%83%BC%E3%82%AF%E3%82%B9/dp/4822249476%3FSubscriptionId%3D15SMZCTB9V8NGR2TW082%26tag%3Drindai87-22%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D4822249476" target="_top">データ・サイエンティストに学ぶ「分析力」    ビッグデータからビジネス・チャンスをつかむ</a><img src="http://www.assoc-amazon.jp/e/ir?t=rindai87-22&l=ur2&o=9" width="1" height="1" style="border: none;" alt="" /><br />ディミトリ・マークス ポール・ブラウン 馬渕邦美 <br /><br />日経BP社  2013-02-28<br />売り上げランキング : 1959<br /><br /><a href="http://www.amazon.co.jp/%E3%83%87%E3%83%BC%E3%82%BF%E3%83%BB%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%83%86%E3%82%A3%E3%82%B9%E3%83%88%E3%81%AB%E5%AD%A6%E3%81%B6%E3%80%8C%E5%88%86%E6%9E%90%E5%8A%9B%E3%80%8D-%E3%83%93%E3%83%83%E3%82%B0%E3%83%87%E3%83%BC%E3%82%BF%E3%81%8B%E3%82%89%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9%E3%83%BB%E3%83%81%E3%83%A3%E3%83%B3%E3%82%B9%E3%82%92%E3%81%A4%E3%81%8B%E3%82%80-%E3%83%87%E3%82%A3%E3%83%9F%E3%83%88%E3%83%AA%E3%83%BB%E3%83%9E%E3%83%BC%E3%82%AF%E3%82%B9/dp/4822249476%3FSubscriptionId%3D15SMZCTB9V8NGR2TW082%26tag%3Drindai87-22%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D4822249476" target="_top">Amazonで詳しく見る</a></font> <font size="-2">by <a href="http://www.goodpic.com/mt/aws/index.html" >G-Tools</a></font></td></tr></table>
+
+
+<p>本のタイトルはすごくキャッチーなんですが、原書のタイトルは&#8221;SEXI LITTLE NUMBERS - How to Grow Your Business Using the Data You Already Have&#8221; と非常にまっとうなタイトル。データサイエンティストと検索して一番上に出てきたので読んでみました。</p>
+
+<p>冗長な割に詳しい解析手法まで踏み込んでいなかったりするので、読んでて辛かったりしましたが、P45-P55に書かれている「ビジネス上の目標を達成するためにどのようにデータを活用してマーケティング活動を行うか」みたいな部分は是非データ解析に関わる全ての人が同じ意識として持ちたいですね。この部分について、事例を交えたりしつつ各章で語られているという構成になっているので、データ解析やろうよ、的な流れが発生したら、すっとこの部分を関係者（特に上司）に読ませるようにしかけると、後々発生するかもしれない謎の根回しが楽になるかもしれません。</p>
+
+<h3>ビッグデータの衝撃</h3>
+
+<table  border="0" cellpadding="5"><tr><td valign="top"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4492580964/rindai87-22/" target="_top"><img src="http://ecx.images-amazon.com/images/I/31JtfiKJzxL._SL160_.jpg" border="0" alt="ビッグデータの衝撃――巨大なデータが戦略を決める" /></a></td><td valign="top"><font size="-1"><a href="http://www.amazon.co.jp/%E3%83%93%E3%83%83%E3%82%B0%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E8%A1%9D%E6%92%83%E2%80%95%E2%80%95%E5%B7%A8%E5%A4%A7%E3%81%AA%E3%83%87%E3%83%BC%E3%82%BF%E3%81%8C%E6%88%A6%E7%95%A5%E3%82%92%E6%B1%BA%E3%82%81%E3%82%8B-%E5%9F%8E%E7%94%B0-%E7%9C%9F%E7%90%B4/dp/4492580964%3FSubscriptionId%3D15SMZCTB9V8NGR2TW082%26tag%3Drindai87-22%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D4492580964" target="_top">ビッグデータの衝撃――巨大なデータが戦略を決める</a><img src="http://www.assoc-amazon.jp/e/ir?t=rindai87-22&l=ur2&o=9" width="1" height="1" style="border: none;" alt="" /><br />城田 真琴 <br /><br />東洋経済新報社  2012-06-29<br />売り上げランキング : 13438<br /><br /><a href="http://www.amazon.co.jp/%E3%83%93%E3%83%83%E3%82%B0%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E8%A1%9D%E6%92%83%E2%80%95%E2%80%95%E5%B7%A8%E5%A4%A7%E3%81%AA%E3%83%87%E3%83%BC%E3%82%BF%E3%81%8C%E6%88%A6%E7%95%A5%E3%82%92%E6%B1%BA%E3%82%81%E3%82%8B-%E5%9F%8E%E7%94%B0-%E7%9C%9F%E7%90%B4/dp/4492580964%3FSubscriptionId%3D15SMZCTB9V8NGR2TW082%26tag%3Drindai87-22%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D4492580964" target="_top">Amazonで詳しく見る</a></font> <font size="-2">by <a href="http://www.goodpic.com/mt/aws/index.html" >G-Tools</a></font></td></tr></table>
+
+
+<p>こちらもビッグデータで検索して一番最初に出てきた本です。情報が非常に整理・網羅されていて、読んでいて素直にすごいなーと思いました。ビジネス活用事例・テクノロジー・プライバシー問題と、それぞれ非常に深く書かれている本なので、「ビッグデータ(笑)」と思うだけでなく、ビジネスサイドでしっかり勉強されている方は少なくともこのレベルの知識を持ってるんですね。ただ、これ読むと、やっぱりHadoop使えばなんとかなるとか、データをとりあえず貯めようよ、みたいな考えになりそうなので、それは本当にいいことなんですけど、本の中で出てる事例の企業のように、さくっと成功事例を生み出せなくて、データ施策に対する投資の回収ってけっこうたいへんだと思うんですけどね−、とだけは誰かエライ人に言ってほしいなと思いました。</p>
+
+<p>あと、内容とは全然関係ないんですけど、なぜかHadoopを「ハドゥープ」、MapReduceを「マップリデュース」と記述していて非常に気持ち悪かったですね。他の用語はアルファベットで書かれていたので、なぜその２つだけ。。。</p>
+
+<p>最後のプライバシーや、データエクスチェンジの辺りは、自分が最近興味ある分野だったりするので、非常に勉強になりました。</p>
+
+<h3>会社を変える分析の力</h3>
+
+<p>2冊読んで消化不良感がまだあったので、さらに手を広げてみています。</p>
+
+<table  border="0" cellpadding="5"><tr><td valign="top"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4062882183/rindai87-22/" target="_top"><img src="http://ecx.images-amazon.com/images/I/31DDYcbaRfL._SL160_.jpg" border="0" alt="会社を変える分析の力 (講談社現代新書)" /></a></td><td valign="top"><font size="-1"><a href="http://www.amazon.co.jp/%E4%BC%9A%E7%A4%BE%E3%82%92%E5%A4%89%E3%81%88%E3%82%8B%E5%88%86%E6%9E%90%E3%81%AE%E5%8A%9B-%E8%AC%9B%E8%AB%87%E7%A4%BE%E7%8F%BE%E4%BB%A3%E6%96%B0%E6%9B%B8-%E6%B2%B3%E6%9C%AC-%E8%96%AB/dp/4062882183%3FSubscriptionId%3D15SMZCTB9V8NGR2TW082%26tag%3Drindai87-22%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D4062882183" target="_top">会社を変える分析の力 (講談社現代新書)</a><img src="http://www.assoc-amazon.jp/e/ir?t=rindai87-22&l=ur2&o=9" width="1" height="1" style="border: none;" alt="" /><br />河本 薫 <br /><br />講談社  2013-07-18<br />売り上げランキング : 387<br /><br /><a href="http://www.amazon.co.jp/%E4%BC%9A%E7%A4%BE%E3%82%92%E5%A4%89%E3%81%88%E3%82%8B%E5%88%86%E6%9E%90%E3%81%AE%E5%8A%9B-%E8%AC%9B%E8%AB%87%E7%A4%BE%E7%8F%BE%E4%BB%A3%E6%96%B0%E6%9B%B8-%E6%B2%B3%E6%9C%AC-%E8%96%AB/dp/4062882183%3FSubscriptionId%3D15SMZCTB9V8NGR2TW082%26tag%3Drindai87-22%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3D4062882183" target="_top">Amazonで詳しく見る</a></font> <font size="-2">by <a href="http://www.goodpic.com/mt/aws/index.html" >G-Tools</a></font></td></tr></table>
+
+
+<p>この本はまだ読んでないのですが、最近良く記事になる<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20130527/479923/">大阪ガス情報通信ビジネスアナリシスセンターの河本さん</a>の本なので、買ってみた本です。まだ最初の方しか読めていないのでなんとも言えませんが、 なかなか良さげな気はします。</p>
+
+<h3>以上</h3>
+
+<p>まあ、最近ちゃんと流行ってるものを理解しようと読んでまして、面白いけどなかなか難しい分野ですよねー、という結論は変わらず。とりあえず飽きるか納得するまで、この分野の本をちょろちょろと読み進めていこうと思います。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[データサイエンティスト界隈について一言言っておくか]]></title>
@@ -2022,47 +2066,6 @@ DMPはこの技術を駆使してCookie情報を収集し、オンラインの�
 
 <p>DMPには、cookie情報の収集・cookie情報の結合・cookie情報の解析・解析情報の提供まで幅広く役割があるみたいですね。本来は配信とは独立しているもののようですが、日本ではいわゆるDMP的なことを単独で事業にしている例はなさそうです。<a href="http://www.xrost.ne.jp/">xrost</a>などのDMP＋配信事業(DSP/SSP等)を行なっている例はありそうです(中身を知っているわけではないので例として適切なのかはわかりませんが&#8230;）。
 今後日本の市場として、配信とは切り離されたところでのDMPが出てくるかどうかですが、プライバシーやセキュリティに対するルール/感覚が米国とは異なるため、必ずしも同じ形に進化していくわけではないと思われます。米国でも、<a href="http://rindai87.github.com/blog/2012/11/11/the-future-of-the-cookie/">今のCookie偏重のデータ収集/活用の流れはよろしくないという動きが出てきているようなので</a>、DMP自体がどうなっていくのかも楽しみです。やはり、データ分析/活用に興味のある人間としては、DMPの動向はアドテクの中で一番興味をひかれる分野ですね。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[the future of the cookieという記事を読んだ]]></title>
-    <link href="http://rindai87.github.io/blog/2012/11/11/the-future-of-the-cookie/"/>
-    <updated>2012-11-11T15:00:00+09:00</updated>
-    <id>http://rindai87.github.io/blog/2012/11/11/the-future-of-the-cookie</id>
-    <content type="html"><![CDATA[<p><a href="http://www.iab.net/iablog/2012/10/the-future-of-the-cookie.html">the future of the cookie</a>という興味深いタイトルの記事がFacebookで流れてきて、個人的に気になったので概要のメモ</p>
-
-<h2>概要</h2>
-
-<p>Cookieを利用したオーディエンスデータの活用が主流だけど、その流れがこのまま加速していくと皆が疲弊する状態になるよね。なので、なんとかするワーキンググループ作ってやっていきましょう、という内容だった。
-ここで、一番重要そうなのが、<a href="http://www.iab.net/">IAB</a>が音頭をとっているということでしょう。IABはInteractive Advertising Bureauの頭文字をとった団体で、インターネットの広告の業界団体です。加盟団体の顔ぶれや、<a href="http://itpro.nikkeibp.co.jp/article/NEWS/20100628/349664/">こういうガイドライン</a>なんかも出してる団体で、非常に影響力は強いと思われます。</p>
-
-<h2>記事のメモ</h2>
-
-<h3>Cookie利用偏重の抱える問題</h3>
-
-<p>Cookieが当初想定されていた以上の使い方をされていて、Webのインフラのようになっていて様々なところで利用されている。
-一方で、安定性や信頼性という点で色々と問題が出てきた。例えば、cookieはuserと同義語ではないが実際はユーザーと同義語として扱われている。こうした問題点を抱えつつも、利用の幅がどんどんと広がっており、今後もその逆の流れにはならないだろう。しかし、これは、広告主にも、媒体も消費者もプラットフォーマーも全てのプレイヤーに旨みのない状況になりつつある。</p>
-
-<h3>パブリッシャーの問題</h3>
-
-<p>パブリッシャーの問題は、3rdパーティー製のピクセルロード処理の蔓延である。
-ページのロードが遅くなりユーザー体験を阻害したり、集計が食い違いが発生したり、またデータ漏えいのリスクがある。
-また、収益モデルも不安定となる。3rdパーティーのピクセルロードを導入するかどうか、ユーザーがcookieをブロックしているかどうかで収益が大きく変動する。また、DNT問題や、法律の問題など、潜在的なリスクが大きい。</p>
-
-<h3>広告出側（広告主、配信者）の問題</h3>
-
-<p>広告出稿側の問題は、余分なユーザートラッキングによるネットワークへの過大な負荷や冗長なユーザートラッキングの仕組みの展開、過度な広告露出などがある。またクッキーをサポートしていないモバイルデバイスの登場への対応などもある。</p>
-
-<h3>消費者の問題</h3>
-
-<p>消費者の問題は、3rdパーティーcookieの増加のための過負荷によるユーザー体験の悪化がある。またオプトイン、オプトアウトが断片化しており、デバイス間で統合がはかれていないなどが挙げられる。</p>
-
-<p>で、cookie依存の仕組みを変えて行きましょうというワーキンググループが登場しているようです。IABが絡んでいるので、個人レベルで気軽にどうこうというよりは、各社のステークスホルダーで足並みを揃えていきましょうという割としっかりとした会みたいですね。日本で参加してる企業はあるのかなと気になるところ。</p>
-
-<h3>所感</h3>
-
-<p>色々やりたいことは分かるけど、正直Cookieのやりとりでなんとかするのはきついだろうとぼんやりと考えていたので、まさにドンピシャな動きだなという感じです。今後の動きにも注目していきたいところです。</p>
 ]]></content>
   </entry>
   
